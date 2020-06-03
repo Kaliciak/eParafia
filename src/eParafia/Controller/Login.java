@@ -48,6 +48,14 @@ public class Login {
         try {
             connection = DriverManager.getConnection(formula, log, has);
             System.out.println("Polaczono");
+
+            try{
+                replaceSceneContent("FXML/adresy.fxml");
+            }catch (Exception e){
+                e.printStackTrace();
+                System.out.println("HERE");
+            }
+
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("Nie udalo sie polaczyc");
