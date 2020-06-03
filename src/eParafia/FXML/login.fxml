@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.Login">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.Login">
    <children>
       <TextField fx:id="adresSerwera" layoutX="308.0" layoutY="37.0" prefHeight="26.0" prefWidth="229.0" text="localhost" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="60.0" />
       <Text layoutX="93.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adres serwera" textAlignment="RIGHT" wrappingWidth="100.0" AnchorPane.leftAnchor="85.0" />
