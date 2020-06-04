@@ -63,7 +63,6 @@ public class Login {
 
         }catch (Exception e){
             System.out.println("Nie udalo sie polaczyc");
-
             showErrorWindow(e);
         }
     }

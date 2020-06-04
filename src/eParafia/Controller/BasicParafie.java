@@ -14,8 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import static eParafia.Controller.Dane.connection;
-import static eParafia.Controller.Dane.replaceSceneContent;
+import static eParafia.Controller.Dane.*;
 
 public class BasicParafie {
 
@@ -53,21 +52,11 @@ public class BasicParafie {
     private MenuItem logout;
 
     ObservableList<BasicParafieRow> parafieRows= FXCollections.observableArrayList();
+    public static ResultSet wyszukaneParafie;
 
      void insertParafie(){
          try {
-             Statement stmt = connection.createStatement();
-             String query=
-                     "SELECT \n" +
-                             "p.id_parafii AS \"id_parafii\",\n" +
-                             "p.nazwa AS \"nazwa\",\n" +
-                             "z.nazwa AS \"zakon\",\n" +
-                             "a.miasto AS \"miasto\",\n" +
-                             "a.ulica AS \"ulica\",\n" +
-                             "a.nr_domu AS \"nr_domu\"\n" +
-                             "\tFROM parafie p LEFT JOIN adresy a ON p.id_adresu=a.id_adresu\n" +
-                             "\tLEFT JOIN zakony z ON p.zakon=z.id_zakonu";
-             ResultSet rs=stmt.executeQuery(query);
+             ResultSet rs=wyszukaneParafie;
 
              while (rs.next()){
                  parafieRows.add(new BasicParafieRow(
@@ -89,8 +78,7 @@ public class BasicParafie {
              basicParafie.setItems(parafieRows);
          }
          catch (Exception e){
-             e.printStackTrace();
-             System.out.println("Nie powiodło się");
+             showErrorWindow(e);
          }
      }
 
@@ -100,7 +88,9 @@ public class BasicParafie {
     void goToMenu(ActionEvent event) {
         try {
             replaceSceneContent("FXML/mainMenu.fxml");
-        }catch (Exception e){}
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
     }
 
     @FXML
@@ -109,7 +99,9 @@ public class BasicParafie {
         try {
             connection.close();
             replaceSceneContent("FXML/login.fxml");
-        }catch (Exception e){}
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
     }
     ////
 

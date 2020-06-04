@@ -26,8 +26,10 @@ public class MainMenu {
     @FXML
     void goToParafie(){
         try {
-            replaceSceneContent("FXML/basicParafie.fxml");
-        }catch (Exception e){}
+            replaceSceneContent("FXML/wyszukajParafie.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
     }
 
     //MENU
@@ -36,7 +38,9 @@ public class MainMenu {
     void goToMenu(ActionEvent event) {
         try {
             replaceSceneContent("FXML/mainMenu.fxml");
-        }catch (Exception e){}
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
     }
 
     @FXML
@@ -45,7 +49,9 @@ public class MainMenu {
         try {
             connection.close();
             replaceSceneContent("FXML/login.fxml");
-        }catch (Exception e){}
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
     }
     ////
 

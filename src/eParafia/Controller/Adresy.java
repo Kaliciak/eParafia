@@ -62,7 +62,7 @@ public class Adresy {
             adresy.setItems(adresRows);
         }
         catch (Exception e){
-            e.printStackTrace();
+            showErrorWindow(e);
             System.out.println("Nie powiodło się");
         }
     }
