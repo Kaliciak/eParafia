@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.sql.Connection;
@@ -26,10 +27,19 @@ public class Dane {
         return page;
     }
 
-    public void openSecondStage(String fxml) throws Exception{
+    public static void openSecondStage(String fxml) throws Exception{
         secondStage.setTitle("Podgląd");
-        Parent r = FXMLLoader.load(getClass().getResource(fxml));
+        Parent r = FXMLLoader.load(Main.class.getResource(fxml));
         secondStage.setScene(new Scene(r, 200, 100));
         secondStage.show();
+    }
+
+    public static void showErrorWindow(Exception e){
+        Alert alert=new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(e.getMessage());
+        alert.setTitle("BŁĄD");
+        alert.setHeaderText("Wystapił błąd");
+        alert.setResizable(true);
+        alert.showAndWait();
     }
 }
