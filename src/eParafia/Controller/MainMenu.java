@@ -23,6 +23,13 @@ public class MainMenu {
     @FXML
     private MenuItem logout;
 
+    @FXML
+    void goToParafie(){
+        try {
+            replaceSceneContent("FXML/basicParafie.fxml");
+        }catch (Exception e){}
+    }
+
     //MENU
 
     @FXML
