@@ -40,7 +40,14 @@ public class MainMenu {
             showErrorWindow(e);
         }
     }
-
+    @FXML
+    void goToSakramenty(ActionEvent event) {
+        try {
+            replaceSceneContent("FXML/sakramenty.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
     //MENU
 
     @FXML

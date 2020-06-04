@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.Sakramenty">
+   <children>
+      <TableView fx:id="table" layoutX="14.0" layoutY="50.0" prefHeight="200.0" prefWidth="577.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="dataColumn" prefWidth="148.6666488647461" text="Data" />
+            <TableColumn fx:id="sakramentColumn" prefWidth="163.3333282470703" text="Sakrament" />
+            <TableColumn fx:id="parafiaColumn" prefWidth="184.66659545898438" text="Parafia" />
+        </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#delete" text="Usuń" />
+                  <MenuItem mnemonicParsing="false" onAction="#show" text="Pokaż szczegóły" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+      <Button layoutX="14.0" layoutY="250.0" mnemonicParsing="false" onAction="#addSakr" prefHeight="63.0" prefWidth="196.0" text="Dodaj sakrament" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="263.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtry:" wrappingWidth="74.80340576171875" />
+      <ComboBox fx:id="sakrType" layoutX="436.0" layoutY="250.0" onAction="#update" prefWidth="150.0" />
+      <ComboBox fx:id="parafia" layoutX="436.0" layoutY="278.0" onAction="#update" prefHeight="25.0" prefWidth="150.0" />
+      <DatePicker fx:id="dateSince" layoutX="226.0" layoutY="339.0" onAction="#update" prefHeight="25.0" prefWidth="187.0" />
+      <DatePicker fx:id="dateTo" layoutX="413.0" layoutY="339.0" onAction="#update" prefHeight="25.0" prefWidth="177.0" />
+      <Text layoutX="354.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sakrament:" wrappingWidth="74.80340576171875" />
+      <Text layoutX="354.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parafia:" />
+      <Text layoutX="290.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Później niż:" />
+      <Text layoutX="465.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wcześniej niż:" />
+      <Button layoutX="14.0" layoutY="317.0" mnemonicParsing="false" onAction="#clear" prefHeight="63.0" prefWidth="196.0" text="Wyczyść filtry" />
+      <MenuBar layoutX="2.0" layoutY="1.0" prefWidth="1000.0">
+         <menus>
+            <Menu fx:id="mainMenu" mnemonicParsing="false" text="Opcje">
+               <items>
+                  <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#goToMenu" text="Menu główne" />
+                  <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#wyloguj" text="Wyloguj" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
