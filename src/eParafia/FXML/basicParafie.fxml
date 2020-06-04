@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.BasicParafie">
    <children>
       <TableView fx:id="basicParafie" layoutX="71.0" layoutY="111.0" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
@@ -24,7 +23,7 @@
          <menus>
             <Menu fx:id="mainMenu" mnemonicParsing="false" text="Opcje">
                <items>
-                  <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#goToMenu" text="Menu główne" />
+                  <MenuItem mnemonicParsing="false" onAction="#goToMenu" text="Menu główne" />
                   <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#wyloguj" text="Wyloguj" />
                </items>
             </Menu>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.BasicParafianie">
+   <children>
+      <TableView fx:id="basicParafie" layoutX="81.0" layoutY="121.0" prefHeight="625.0" prefWidth="1081.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <columns>
+            <TableColumn fx:id="id_osobyColumn" prefWidth="85.33333027362823" text="id osoby" />
+            <TableColumn fx:id="imieColumn" prefWidth="247.4666748046875" text="imię" />
+            <TableColumn fx:id="nazwiskoColumn" prefWidth="218.93331909179688" text="nazwisko" />
+            <TableColumn fx:id="data_narodzinColumn" minWidth="0.0" prefWidth="206.1334228515625" text="data narodzin" />
+            <TableColumn fx:id="data_zgonuColumn" minWidth="0.0" prefWidth="242.13330078125" text="data zgonu" />
+         </columns>
+      </TableView>
+      <MenuBar layoutX="20.0" layoutY="20.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu fx:id="mainMenu" mnemonicParsing="false" text="Opcje">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#goToMenu" text="Menu główne" />
+                  <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#wyloguj" text="Wyloguj" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

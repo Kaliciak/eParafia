@@ -32,6 +32,15 @@ public class MainMenu {
         }
     }
 
+    @FXML
+    void goToParafianie(){
+        try {
+            replaceSceneContent("FXML/basicParafianie.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
     //MENU
 
     @FXML

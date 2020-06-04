@@ -29,5 +29,10 @@
             <Font size="20.0" />
          </font>
       </Button>
+      <Button layoutX="89.0" layoutY="251.0" mnemonicParsing="false" onAction="#goToParafianie" prefHeight="70.0" prefWidth="218.0" text="Parafianie" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="700.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

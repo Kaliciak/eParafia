@@ -18,6 +18,9 @@ import static eParafia.Controller.Dane.*;
 
 public class BasicParafie {
 
+    ObservableList<BasicParafieRow> parafieRows= FXCollections.observableArrayList();
+    public static ResultSet wyszukaneParafie;
+
     @FXML
     private ResourceBundle resources;
 
@@ -51,9 +54,6 @@ public class BasicParafie {
     @FXML
     private MenuItem logout;
 
-    ObservableList<BasicParafieRow> parafieRows= FXCollections.observableArrayList();
-    public static ResultSet wyszukaneParafie;
-
      void insertParafie(){
          try {
              ResultSet rs=wyszukaneParafie;
@@ -82,6 +82,21 @@ public class BasicParafie {
          }
      }
 
+    @FXML
+    void initialize() {
+        assert basicParafie != null : "fx:id=\"basicParafie\" was not injected: check your FXML file 'basicParafie.fxml'.";
+        assert id_pariafiiColumn != null : "fx:id=\"id_pariafiiColumn\" was not injected: check your FXML file 'basicParafie.fxml'.";
+        assert nazwaColumn != null : "fx:id=\"nazwaColumn\" was not injected: check your FXML file 'basicParafie.fxml'.";
+        assert zakonColumn != null : "fx:id=\"zakonColumn\" was not injected: check your FXML file 'basicParafie.fxml'.";
+        assert miastoColumn != null : "fx:id=\"miastoColumn\" was not injected: check your FXML file 'basicParafie.fxml'.";
+        assert ulicaColumn != null : "fx:id=\"ulicaColumn\" was not injected: check your FXML file 'basicParafie.fxml'.";
+        assert nr_domuColumn != null : "fx:id=\"nr_domuColumn\" was not injected: check your FXML file 'basicParafie.fxml'.";
+        assert mainMenu != null : "fx:id=\"mainMenu\" was not injected: check your FXML file 'basicParafie.fxml'.";
+        assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'basicParafie.fxml'.";
+
+        insertParafie();
+    }
+
     //MENU
 
     @FXML
@@ -104,19 +119,4 @@ public class BasicParafie {
         }
     }
     ////
-
-    @FXML
-    void initialize() {
-        assert basicParafie != null : "fx:id=\"basicParafie\" was not injected: check your FXML file 'basicParafie.fxml'.";
-        assert id_pariafiiColumn != null : "fx:id=\"id_pariafiiColumn\" was not injected: check your FXML file 'basicParafie.fxml'.";
-        assert nazwaColumn != null : "fx:id=\"nazwaColumn\" was not injected: check your FXML file 'basicParafie.fxml'.";
-        assert zakonColumn != null : "fx:id=\"zakonColumn\" was not injected: check your FXML file 'basicParafie.fxml'.";
-        assert miastoColumn != null : "fx:id=\"miastoColumn\" was not injected: check your FXML file 'basicParafie.fxml'.";
-        assert ulicaColumn != null : "fx:id=\"ulicaColumn\" was not injected: check your FXML file 'basicParafie.fxml'.";
-        assert nr_domuColumn != null : "fx:id=\"nr_domuColumn\" was not injected: check your FXML file 'basicParafie.fxml'.";
-        assert mainMenu != null : "fx:id=\"mainMenu\" was not injected: check your FXML file 'basicParafie.fxml'.";
-        assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'basicParafie.fxml'.";
-
-        insertParafie();
-    }
 }
