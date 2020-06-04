@@ -12,6 +12,7 @@ import java.sql.Connection;
 public class Dane {
     public static Connection connection;
     public static Stage stage;
+    public static Stage secondStage;
 
     public static Parent replaceSceneContent(String fxml) throws Exception {
         Parent page = (Parent) FXMLLoader.load(Main.class.getResource(fxml), null, new JavaFXBuilderFactory());
@@ -23,5 +24,12 @@ public class Dane {
         }
         stage.sizeToScene();
         return page;
+    }
+
+    public void openSecondStage(String fxml) throws Exception{
+        secondStage.setTitle("Podgląd");
+        Parent r = FXMLLoader.load(getClass().getResource(fxml));
+        secondStage.setScene(new Scene(r, 200, 100));
+        secondStage.show();
     }
 }

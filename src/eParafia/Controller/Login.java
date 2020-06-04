@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 import static eParafia.Controller.Dane.*;
 
@@ -15,6 +16,9 @@ public class Login {
 
     @FXML
     private ResourceBundle resources;
+
+    @FXML
+    private Text addd;
 
     @FXML
     private URL location;
@@ -50,7 +54,7 @@ public class Login {
             System.out.println("Polaczono");
 
             try{
-                replaceSceneContent("FXML/adresy.fxml");
+                replaceSceneContent("FXML/mainMenu.fxml");
             }catch (Exception e){
                 e.printStackTrace();
                 System.out.println("HERE");
@@ -58,6 +62,7 @@ public class Login {
 
         }catch (Exception e){
             e.printStackTrace();
+            System.out.println(e.getMessage());
             System.out.println("Nie udalo sie polaczyc");
         }
     }
