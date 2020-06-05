@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -14,69 +15,81 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.BasicParafianie">
    <children>
-      <TableView fx:id="basicParafie" layoutX="81.0" layoutY="121.0" prefHeight="625.0" prefWidth="1081.0" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
-         <columns>
-            <TableColumn fx:id="id_osobyColumn" prefWidth="85.33333027362823" text="id osoby" />
-            <TableColumn fx:id="imieColumn" prefWidth="247.4666748046875" text="imię" />
-            <TableColumn fx:id="nazwiskoColumn" prefWidth="218.93331909179688" text="nazwisko" />
-            <TableColumn fx:id="data_narodzinColumn" minWidth="0.0" prefWidth="206.1334228515625" text="data narodzin" />
-            <TableColumn fx:id="data_zgonuColumn" minWidth="0.0" prefWidth="242.13330078125" text="data zgonu" />
-         </columns>
-      </TableView>
-      <MenuBar layoutX="20.0" layoutY="20.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <menus>
-            <Menu fx:id="mainMenu" mnemonicParsing="false" text="Opcje">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#goToMenu" text="Menu główne" />
-                  <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#wyloguj" text="Wyloguj" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
-      <Text layoutX="36.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parametry wyszukiwania osoby" textAlignment="CENTER" wrappingWidth="1000.2699584960938">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <TextField fx:id="imie" layoutX="205.0" layoutY="461.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="195.0" />
-      <Text layoutX="95.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id osoby" AnchorPane.leftAnchor="85.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="107.0" layoutY="530.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nazwisko" AnchorPane.leftAnchor="85.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <TextField fx:id="id_osoby" layoutX="205.0" layoutY="420.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="195.0" />
-      <Text layoutX="105.0" layoutY="481.0" strokeType="OUTSIDE" strokeWidth="0.0" text="imie" AnchorPane.leftAnchor="85.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="552.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data narodzin" AnchorPane.leftAnchor="580.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="552.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data zgonu" AnchorPane.leftAnchor="580.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Button layoutX="444.0" layoutY="552.0" mnemonicParsing="false" onAction="#wyszukajOsobe" prefHeight="32.0" prefWidth="134.0" text="Wyszukaj" AnchorPane.bottomAnchor="15.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <TextField fx:id="nazwisko" layoutX="215.0" layoutY="508.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="195.0" />
-      <Button layoutX="642.0" layoutY="552.0" mnemonicParsing="false" onAction="#zaawansowaneSzukanie" prefHeight="44.0" prefWidth="202.0" text="Zaawansowane" AnchorPane.bottomAnchor="15.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <DatePicker fx:id="data_zgonu" layoutX="689.0" layoutY="471.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="700.0" />
-      <DatePicker fx:id="data_narodzin" layoutX="701.0" layoutY="421.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="700.0" />
+      <SplitPane dividerPositions="0.47491638795986624" orientation="VERTICAL" prefHeight="600.0" prefWidth="1036.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <MenuBar prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <menus>
+                        <Menu fx:id="mainMenu" mnemonicParsing="false" text="Opcje">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#goToMenu" text="Menu główne" />
+                              <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#wyloguj" text="Wyloguj" />
+                           </items>
+                        </Menu>
+                     </menus>
+                  </MenuBar>
+                  <TableView fx:id="basicParafie" prefHeight="313.0" prefWidth="1035.0" AnchorPane.bottomAnchor="-42.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                     <columns>
+                        <TableColumn fx:id="id_osobyColumn" prefWidth="85.33333027362823" text="id osoby" />
+                        <TableColumn fx:id="imieColumn" prefWidth="247.4666748046875" text="imię" />
+                        <TableColumn fx:id="nazwiskoColumn" prefWidth="218.93331909179688" text="nazwisko" />
+                        <TableColumn fx:id="data_narodzinColumn" minWidth="0.0" prefWidth="206.1334228515625" text="data narodzin" />
+                        <TableColumn fx:id="data_zgonuColumn" minWidth="0.0" prefWidth="242.13330078125" text="data zgonu" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TextField fx:id="imie" layoutX="197.0" layoutY="129.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="195.0" />
+                  <Text layoutX="10.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parametry wyszukiwania osoby" textAlignment="CENTER" wrappingWidth="1000.2699584960938">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="83.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id osoby" AnchorPane.leftAnchor="85.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="81.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nazwisko" AnchorPane.leftAnchor="85.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="id_osoby" layoutX="218.0" layoutY="67.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="195.0" />
+                  <Text layoutX="90.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="imie" AnchorPane.leftAnchor="90.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="517.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data narodzin" AnchorPane.rightAnchor="320.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="535.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data zgonu" AnchorPane.rightAnchor="320.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="416.0" layoutY="238.0" mnemonicParsing="false" onAction="#wyszukajOsobe" prefHeight="32.0" prefWidth="134.0" text="Wyszukaj">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="nazwisko" layoutX="216.0" layoutY="199.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="195.0" />
+                  <Button layoutX="726.0" layoutY="244.0" mnemonicParsing="false" onAction="#zaawansowaneSzukanie" prefHeight="44.0" prefWidth="202.0" text="Zaawansowane">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <DatePicker fx:id="data_zgonu" layoutX="701.0" layoutY="80.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="704.0" AnchorPane.rightAnchor="100.0" />
+                  <DatePicker fx:id="data_narodzin" layoutX="688.0" layoutY="161.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="704.0" AnchorPane.rightAnchor="100.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>

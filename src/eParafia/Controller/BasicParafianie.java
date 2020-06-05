@@ -188,7 +188,11 @@ public class BasicParafianie {
 
     @FXML
     void zaawansowaneSzukanie(ActionEvent event) {
-
+        try {
+            openSecondStage("FXML/advancedParafianie.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
     }
 
 
