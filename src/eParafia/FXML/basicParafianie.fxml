@@ -82,7 +82,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Button layoutX="416.0" layoutY="238.0" mnemonicParsing="false" onAction="#wyszukajOsobe" prefHeight="32.0" prefWidth="134.0" text="Wyszukaj">
+                  <Button layoutX="465.0" layoutY="244.0" mnemonicParsing="false" onAction="#wyszukajOsobe" prefHeight="32.0" prefWidth="134.0" text="Wyszukaj">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -95,6 +95,11 @@
                   </Button>
                   <DatePicker fx:id="data_zgonu" layoutX="701.0" layoutY="80.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="704.0" AnchorPane.rightAnchor="100.0" />
                   <DatePicker fx:id="data_narodzin" layoutX="688.0" layoutY="161.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="704.0" AnchorPane.rightAnchor="100.0" />
+                  <Button layoutX="155.0" layoutY="245.0" mnemonicParsing="false" onAction="#dodajOsobe" prefHeight="44.0" prefWidth="169.0" text="Dodaj osobę">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
         </items>
