@@ -295,7 +295,7 @@ public class ModifyParafianin {
             }
 
             if(id_parafii.getText()!=null && !id_parafii.getText().isEmpty()){
-                query="INSERT INTO historia_paraifan(id_osoby, id_parafii, apostazja)\n" +
+                query="INSERT INTO historia_parafian(id_osoby, id_parafii, apostazja)\n" +
                         "VALUES\n" +
                         "\t(";
                 query+="'"+newParafianinId+"',";
@@ -397,10 +397,175 @@ public class ModifyParafianin {
         }
     }
 
+    void zmodyfikujOsobe(){
+        try {
+            Statement stmt = connection.createStatement();
+            //znajdowanie adresu
+
+            query="SELECT * FROM parafianie WHERE ";
+            query+="id_osoby='" + id_osoby.getText() + "'";
+
+            stmt = connection.createStatement();
+            ResultSet rs= stmt.executeQuery(query);
+
+            Integer idPar=null;
+            String aId=null; //id adresu
+            while (rs.next()){
+                idPar=rs.getInt("id_osoby");
+                aId=rs.getString("id_adresu");
+                break;
+            }
+            if(idPar==null){
+                throw new Exception("Brak parafianina o podanym id");
+            }
+
+            query="SELECT * FROM adresy WHERE ";
+            query+="id_adresu='" + aId + "'";
+
+            stmt = connection.createStatement();
+            rs= stmt.executeQuery(query);
+
+            String mia=miasto.getText();
+            String ul=ulica.getText();
+            String nrDom=nr_domu.getText();
+
+            while (rs.next()){
+                if(mia==null || mia.isEmpty()){
+                    mia=rs.getString("miasto");
+                }
+                if(ul==null || ul.isEmpty()){
+                    ul=rs.getString("ulica");
+                }
+                if(nrDom==null || nrDom.isEmpty()){
+                    nrDom=rs.getString("nr_domu");
+                }
+            }
+
+            query="SELECT * FROM ADRESY WHERE ";
+            query+="miasto='" + mia + "'";
+            query+=" AND ulica='" + ul + "'";
+            query+= " AND nr_domu='" + nrDom + "'";
+
+            stmt = connection.createStatement();
+            rs= stmt.executeQuery(query);
+
+            while (rs.next()){
+                aId=rs.getString("id_adresu");
+            }
+
+            if(aId==null){
+                stmt = connection.createStatement();
+                ResultSet nid= stmt.executeQuery("SELECT max(id_adresu) AS \"id\" FROM adresy");
+                Integer nId=0;
+                while (nid.next()){
+                    nId=nid.getInt("id");
+                }
+                nId++;
+                query="INSERT INTO ADRESY(id_adresu, miasto, ulica, nr_domu)\n" +
+                        "VALUES\n" +
+                        " (\n";
+                query+= "'"+ nId + "'," ;
+                query+="'"+ mia + "'," ;
+                query+="'"+ ul + "'," ;
+                query+= "'"+nrDom + "')" ;
+
+                stmt = connection.createStatement();
+                stmt.executeUpdate(query);
+                aId=nId.toString();
+            }
+
+            query="UPDATE parafianie SET ";
+            query+="id_adresu='"+aId+"'";
+            if(imie.getText()!=null && !imie.getText().isEmpty()){
+                query+=",";
+                query+="imie='"+imie.getText()+"'";;
+            }
+            if(drugie_imie.getText()!=null && !drugie_imie.getText().isEmpty()){
+                query+=",";
+                query+="drugie_imie='"+drugie_imie.getText()+"'";;
+            }
+            if(imie_z_bierzmowania.getText()!=null && !imie_z_bierzmowania.getText().isEmpty()){
+                query+=",";
+                query+="imie_z_bierzmowania='"+imie_z_bierzmowania.getText()+"'";;
+            }
+            if(nazwisko.getText()!=null && !nazwisko.getText().isEmpty()){
+                query+=",";
+                query+="nazwisko='"+nazwisko.getText()+"'";;
+            }
+            if(plec.getSelectionModel().getSelectedItem()!=null && !plec.getSelectionModel().getSelectedItem().isEmpty()){
+                query+=",";
+                query+="plec='"+plec.getSelectionModel().getSelectedItem()+"'";;
+            }
+            if(data_narodzin.getValue()!=null){
+                query+=",";
+                query+="data_narodzin='"+data_narodzin.getValue()+"'";;
+            }
+            if(data_zgonu.getValue()!=null){
+                query+=",";
+                query+="data_zgonu='"+data_zgonu.getValue()+"'";
+            }
+            if(id_ojca.getText()!=null && !id_ojca.getText().isEmpty()){
+                query+=",";
+                query+="id_ojca='"+id_ojca.getText()+"'";
+            }
+            if(id_matki.getText()!=null && !id_matki.getText().isEmpty()){
+                query+=",";
+                query+="id_matki='"+id_matki.getText()+"'";
+            }
+            if(id_ojca_chrzestnego.getText()!=null && !id_ojca_chrzestnego.getText().isEmpty()){
+                query+=",";
+                query+="id_ojca_chrzestnego='"+id_ojca_chrzestnego.getText()+"'";
+            }
+            if(id_matki_chrzestnej.getText()!=null && !id_matki_chrzestnej.getText().isEmpty()){
+                query+=",";
+                query+="id_matki_chrzestnej='"+id_matki_chrzestnej.getText()+"'";
+            }
+
+            query+=" WHERE id_osoby='"+idPar+"'";
+
+            stmt = connection.createStatement();
+            stmt.executeUpdate(query);
+
+            //wstawianie do historii parafian
+
+            query="SELECT * FROM historia_parafian WHERE data_odejscia IS NULL AND id_osoby='"+idPar+"'";
+            stmt = connection.createStatement();
+            rs=stmt.executeQuery(query);
+
+            String idParafii="";
+            while (rs.next()){
+                idParafii=rs.getString("id_parafii");
+                break;
+            }
+            if(id_parafii.getText()!=null && !id_parafii.getText().isEmpty() && !idParafii.equals(id_parafii.getText())){
+                query="UPDATE historia_parafian\n" +
+                        "\tSET data_odejscia=now()\n" +
+                        "\tWHERE id_osoby='"+idPar+"'";
+                stmt = connection.createStatement();
+                stmt.executeUpdate(query);
+
+
+                query="INSERT INTO historia_parafian(id_osoby, id_parafii, apostazja)\n" +
+                        "VALUES\n" +
+                        "\t(";
+                query+="'"+idPar+"',";
+                query+="'"+id_parafii.getText()+"',";
+                query+="false)";
+                stmt = connection.createStatement();
+                stmt.executeUpdate(query);
+            }
+
+            showPar(idPar);
+
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
     @FXML
     void zmienOsobe(ActionEvent event) {
         if(id_osoby.getText()!=null && !id_osoby.getText().isEmpty()){
-
+            zmodyfikujOsobe();
         }
         else {
             dodajOsobe();
@@ -451,4 +616,27 @@ public class ModifyParafianin {
 
         wypelnijCombo();
     }
+
+    //MENU
+
+    @FXML
+    void goToMenu(ActionEvent event) {
+        try {
+            replaceSceneContent("FXML/mainMenu.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
+    void wyloguj(ActionEvent event) {
+        System.out.println("WYLOGUJ");
+        try {
+            connection.close();
+            replaceSceneContent("FXML/login.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+    ////
 }

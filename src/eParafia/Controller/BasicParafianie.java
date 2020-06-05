@@ -237,7 +237,7 @@ public class BasicParafianie {
     @FXML
     void dodajOsobe(ActionEvent event) {
         try {
-            openSecondStage("FXML/modifyParafianin.fxml");
+            replaceSceneContent("FXML/modifyParafianin.fxml");
         }catch (Exception e){
             showErrorWindow(e);
         }
