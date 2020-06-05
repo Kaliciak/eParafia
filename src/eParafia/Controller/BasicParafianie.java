@@ -22,6 +22,7 @@ public class BasicParafianie {
     public static ResultSet wyszukaniParafianie;
     boolean isWhere;
     String query;
+    static boolean czyPrep=true;
 
     @FXML
     private ResourceBundle resources;
@@ -195,6 +196,43 @@ public class BasicParafianie {
         }
     }
 
+    @FXML
+    void showSzczegoly(ActionEvent event) {
+        try {
+            Statement stmt = connection.createStatement();
+
+            String idOs=basicParafie.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
+
+            query="SELECT \n" +
+                    "p.id_osoby AS \"id_osoby\",\n" +
+                    "p.imie AS \"imie\",\n" +
+                    "p.drugie_imie AS \"drugie_imie\",\n" +
+                    "p.imie_z_bierzmowania AS \"imie_z_bierzmowania\",\n" +
+                    "p.nazwisko AS \"nazwisko\",\n" +
+                    "p.plec AS \"plec\",\n" +
+                    "p.data_narodzin AS \"data_narodzin\",\n" +
+                    "p.data_zgonu AS \"data_zgonu\",\n" +
+                    "a.miasto AS \"miasto\",\n" +
+                    "a.ulica AS \"ulica\",\n" +
+                    "a.nr_domu AS \"nr_domu\",\n" +
+                    "hp.id_parafii AS \"id_parafii\",\n" +
+                    "p.id_ojca AS \"id_ojca\",\n" +
+                    "p.id_matki AS \"id_matki\",\n" +
+                    "p.id_ojca_chrzestnego AS \"id_ojca_chrzestnego\",\n" +
+                    "p.id_matki_chrzestnej AS \"id_matki_chrzestnej\"\n" +
+                    "\tFROM parafianie p LEFT JOIN adresy a ON p.id_adresu=a.id_adresu\n" +
+                    "\tLEFT JOIN historia_parafian hp ON p.id_osoby=hp.id_osoby\n" +
+                    "\tWHERE hp.data_odejscia IS NULL" +
+                    " AND p.id_osoby='" + idOs +"'";
+
+            AdvancedParafianie.czyPrep=false;
+            AdvancedParafianie.wyszukaniParafianie=stmt.executeQuery(query);
+            openSecondStage("FXML/advancedParafianie.fxml");
+        }
+        catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
 
     @FXML
     void initialize() {
@@ -207,7 +245,13 @@ public class BasicParafianie {
         assert mainMenu != null : "fx:id=\"mainMenu\" was not injected: check your FXML file 'basicParafianie.fxml'.";
         assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'basicParafianie.fxml'.";
 
-        prepParafianie();
+
+        if(czyPrep){
+            prepParafianie();
+        }
+        else {
+            czyPrep=true;
+        }
         insertParafianie();
     }
 

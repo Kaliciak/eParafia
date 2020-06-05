@@ -24,6 +24,7 @@ public class AdvancedParafianie {
 
     ObservableList<AdvancedParafianieRow> parafianieRows= FXCollections.observableArrayList();
     public static ResultSet wyszukaniParafianie;
+    public static boolean czyPrep=true;
     boolean isWhere;
     String query;
 
@@ -405,7 +406,12 @@ public class AdvancedParafianie {
         assert id_ojca_chrzestnegoColumn != null : "fx:id=\"id_ojca_chrzestnegoColumn\" was not injected: check your FXML file 'advancedParafianie.fxml'.";
         assert id_matki_chrzestnejColumn != null : "fx:id=\"id_matki_chrzestnejColumn\" was not injected: check your FXML file 'advancedParafianie.fxml'.";
 
-        prepParafianie();
+        if(czyPrep){
+            prepParafianie();
+        }
+        else {
+            czyPrep=true;
+        }
         insertParafianie();
     }
 }

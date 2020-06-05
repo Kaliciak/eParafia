@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -37,6 +38,13 @@
                         <TableColumn fx:id="data_narodzinColumn" minWidth="0.0" prefWidth="206.1334228515625" text="data narodzin" />
                         <TableColumn fx:id="data_zgonuColumn" minWidth="0.0" prefWidth="242.13330078125" text="data zgonu" />
                      </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#showSzczegoly" text="Szczegóły" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
                   </TableView>
                </children>
             </AnchorPane>

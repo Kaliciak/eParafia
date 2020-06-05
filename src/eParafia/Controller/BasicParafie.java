@@ -219,6 +219,32 @@ public class BasicParafie {
     }
 
     @FXML
+    void showPrafianie(ActionEvent event) {
+        try {
+            Statement stmt = connection.createStatement();
+
+            String idPar=basicParafie.getSelectionModel().getSelectedItem().id_parafii.getValue().toString();
+
+            query="SELECT \n" +
+                    "p.id_osoby AS \"id_osoby\",\n" +
+                    "p.imie AS \"imie\",\n" +
+                    "p.nazwisko AS \"nazwisko\",\n" +
+                    "p.data_narodzin AS \"data_narodzin\",\n" +
+                    "p.data_zgonu AS \"data_zgonu\"\n" +
+                    "\tFROM parafianie p LEFT JOIN historia_parafian hp ON p.id_osoby=hp.id_osoby\n" +
+                    "\tWHERE hp.data_odejscia IS NULL\n" +
+                    "\tAND hp.id_parafii= '"+ idPar + "'";
+
+            BasicParafianie.wyszukaniParafianie=stmt.executeQuery(query);
+            BasicParafianie.czyPrep=false;
+            replaceSceneContent("FXML/basicParafianie.fxml");
+        }
+        catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
     void initialize() {
         assert basicParafie != null : "fx:id=\"basicParafie\" was not injected: check your FXML file 'basicParafie.fxml'.";
         assert id_pariafiiColumn != null : "fx:id=\"id_pariafiiColumn\" was not injected: check your FXML file 'basicParafie.fxml'.";

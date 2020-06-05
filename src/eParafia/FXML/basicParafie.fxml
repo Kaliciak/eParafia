@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -19,6 +20,23 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
+                  <TableView fx:id="basicParafie" prefHeight="315.0" prefWidth="1026.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                    <columns>
+                      <TableColumn fx:id="id_pariafiiColumn" prefWidth="85.33333027362823" text="id parafii" />
+                      <TableColumn fx:id="nazwaColumn" prefWidth="277.8666229248047" text="nazwa" />
+                        <TableColumn fx:id="zakonColumn" prefWidth="150.933349609375" text="zakon" />
+                        <TableColumn fx:id="miastoColumn" minWidth="0.0" prefWidth="169.86666870117188" text="miasto" />
+                        <TableColumn fx:id="ulicaColumn" minWidth="0.0" prefWidth="208.79998779296875" text="ulica" />
+                        <TableColumn fx:id="nr_domuColumn" prefWidth="110.4000244140625" text="nr domu" />
+                    </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#showPrafianie" text="Wyświetl parafian" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TableView>
                   <MenuBar prefWidth="1000.0">
                      <menus>
                         <Menu fx:id="mainMenu" mnemonicParsing="false" text="Opcje">
@@ -29,16 +47,6 @@
                         </Menu>
                      </menus>
                   </MenuBar>
-                  <TableView fx:id="basicParafie" prefHeight="315.0" prefWidth="1026.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
-                    <columns>
-                      <TableColumn fx:id="id_pariafiiColumn" prefWidth="85.33333027362823" text="id parafii" />
-                      <TableColumn fx:id="nazwaColumn" prefWidth="277.8666229248047" text="nazwa" />
-                        <TableColumn fx:id="zakonColumn" prefWidth="150.933349609375" text="zakon" />
-                        <TableColumn fx:id="miastoColumn" minWidth="0.0" prefWidth="169.86666870117188" text="miasto" />
-                        <TableColumn fx:id="ulicaColumn" minWidth="0.0" prefWidth="208.79998779296875" text="ulica" />
-                        <TableColumn fx:id="nr_domuColumn" prefWidth="110.4000244140625" text="nr domu" />
-                    </columns>
-                  </TableView>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
