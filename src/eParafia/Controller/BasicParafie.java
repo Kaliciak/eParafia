@@ -18,6 +18,8 @@ public class BasicParafie {
 
     ObservableList<BasicParafieRow> parafieRows= FXCollections.observableArrayList();
     public static ResultSet wyszukaneParafie;
+    boolean isWhere;
+    String query;
 
     @FXML
     private ResourceBundle resources;
@@ -69,9 +71,6 @@ public class BasicParafie {
 
     @FXML
     private TextField nr_domu;
-
-    boolean isWhere;
-    String query;
 
     void prepParafie(){
         try {
