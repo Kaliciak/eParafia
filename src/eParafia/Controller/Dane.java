@@ -30,7 +30,7 @@ public class Dane {
     public static void openSecondStage(String fxml) throws Exception{
         secondStage.setTitle("Podgląd");
         Parent r = FXMLLoader.load(Main.class.getResource(fxml));
-        secondStage.setScene(new Scene(r, 200, 100));
+        secondStage.setScene(new Scene(r, 1000, 600));
         secondStage.show();
     }
 
