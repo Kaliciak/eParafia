@@ -37,7 +37,7 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <TableView fx:id="participants" layoutX="4.0" layoutY="188.0" prefHeight="200.0" prefWidth="991.0">
+      <TableView fx:id="participants" layoutX="4.0" layoutY="243.0" prefHeight="200.0" prefWidth="991.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="69.99999761581421" text="ID" />
           <TableColumn fx:id="imieColumn" prefWidth="120.00000762939453" text="Imie" />
@@ -45,28 +45,31 @@
             <TableColumn fx:id="uczestnictwoColumn" prefWidth="559.3333435058594" text="Rodzaj uczestnictwa" />
         </columns>
       </TableView>
-      <Text layoutX="372.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Uczestnicy:" wrappingWidth="138.0800552368164">
+      <Text layoutX="373.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Uczestnicy:" wrappingWidth="138.0800552368164">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Button layoutX="14.0" layoutY="396.0" mnemonicParsing="false" onAction="#add" prefHeight="58.0" prefWidth="298.0" text="Dodaj uczestnika" />
-      <Button layoutX="320.0" layoutY="396.0" mnemonicParsing="false" onAction="#edit" prefHeight="58.0" prefWidth="298.0" text="Edytuj" />
-      <Button layoutX="625.0" layoutY="396.0" mnemonicParsing="false" onAction="#returnToSakramenty" prefHeight="58.0" prefWidth="298.0" text="Wróć do wszystkich sakramentów" />
+      <Button layoutX="14.0" layoutY="454.0" mnemonicParsing="false" onAction="#add" prefHeight="58.0" prefWidth="298.0" text="Dodaj uczestnika" />
+      <Button layoutX="320.0" layoutY="454.0" mnemonicParsing="false" onAction="#edit" prefHeight="58.0" prefWidth="298.0" text="Edytuj" />
+      <Button layoutX="626.0" layoutY="454.0" mnemonicParsing="false" onAction="#returnToSakramenty" prefHeight="58.0" prefWidth="298.0" text="Wróć do wszystkich sakramentów" />
       <Text layoutX="373.0" layoutY="60.0" onDragDetected="#add" strokeType="OUTSIDE" strokeWidth="0.0" text="Dane szafarza:" wrappingWidth="191.4133682250977">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text fx:id="szafarzName" layoutX="373.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię:" wrappingWidth="291.4133682250977">
+      <Text fx:id="szafarzName" layoutX="373.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię:" wrappingWidth="291.4133682250977">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text fx:id="szafarzSurname" layoutX="372.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko:" wrappingWidth="273.4134597778321">
+      <Text fx:id="szafarzSurname" layoutX="373.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko:" wrappingWidth="273.4134597778321">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
+      <Button layoutX="14.0" layoutY="523.0" mnemonicParsing="false" onAction="#add_swiadek" prefHeight="58.0" prefWidth="298.0" text="Dodaj świadka" />
+      <Button layoutX="320.0" layoutY="523.0" mnemonicParsing="false" onAction="#add_gosc" prefHeight="58.0" prefWidth="298.0" text="Dodaj gościa" />
+      <Button layoutX="626.0" layoutY="523.0" mnemonicParsing="false" onAction="#delete" prefHeight="58.0" prefWidth="298.0" text="Usuń sakrament" />
    </children>
 </AnchorPane>
