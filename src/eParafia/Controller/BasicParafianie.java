@@ -227,6 +227,30 @@ public class BasicParafianie {
 
             AdvancedParafianie.czyPrep=false;
             AdvancedParafianie.wyszukaniParafianie=stmt.executeQuery(query);
+            if(!AdvancedParafianie.wyszukaniParafianie.next()){
+                query="SELECT \n" +
+                        "p.id_osoby AS \"id_osoby\",\n" +
+                        "p.imie AS \"imie\",\n" +
+                        "p.drugie_imie AS \"drugie_imie\",\n" +
+                        "p.imie_z_bierzmowania AS \"imie_z_bierzmowania\",\n" +
+                        "p.nazwisko AS \"nazwisko\",\n" +
+                        "p.plec AS \"plec\",\n" +
+                        "p.data_narodzin AS \"data_narodzin\",\n" +
+                        "p.data_zgonu AS \"data_zgonu\",\n" +
+                        "a.miasto AS \"miasto\",\n" +
+                        "a.ulica AS \"ulica\",\n" +
+                        "a.nr_domu AS \"nr_domu\",\n" +
+                        "null AS \"id_parafii\",\n" +
+                        "p.id_ojca AS \"id_ojca\",\n" +
+                        "p.id_matki AS \"id_matki\",\n" +
+                        "p.id_ojca_chrzestnego AS \"id_ojca_chrzestnego\",\n" +
+                        "p.id_matki_chrzestnej AS \"id_matki_chrzestnej\"\n" +
+                        "\tFROM parafianie p LEFT JOIN adresy a ON p.id_adresu=a.id_adresu\n" +
+                        "\tWHERE p.id_osoby='" + idOs +"'";
+            }
+
+            AdvancedParafianie.wyszukaniParafianie=stmt.executeQuery(query);
+
             openSecondStage("FXML/advancedParafianie.fxml");
         }
         catch (Exception e){
@@ -236,6 +260,16 @@ public class BasicParafianie {
 
     @FXML
     void dodajOsobe(ActionEvent event) {
+        try {
+            replaceSceneContent("FXML/modifyParafianin.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
+    void editParafianin(ActionEvent event) {
+        ModifyParafianin.prevNum=basicParafie.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
         try {
             replaceSceneContent("FXML/modifyParafianin.fxml");
         }catch (Exception e){

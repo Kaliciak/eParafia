@@ -21,7 +21,7 @@ public class ModifyParafianin {
     public static boolean czyPrep=true;
     boolean isWhere;
     String query;
-    String prevNum=null;
+    public static String prevNum=null;
 
     @FXML
     private ResourceBundle resources;
@@ -305,14 +305,14 @@ public class ModifyParafianin {
                 stmt.executeUpdate(query);
             }
 
-            showPar(newParafianinId);
+            showPar(newParafianinId.toString());
 
         }catch (Exception e){
             showErrorWindow(e);
         }
     }
 
-    void showPar(Integer parId){
+    void showPar(String parId){
         try {
             Statement stmt = connection.createStatement();
             query = "SELECT \n" +
@@ -555,7 +555,7 @@ public class ModifyParafianin {
                 stmt.executeUpdate(query);
             }
 
-            showPar(idPar);
+            showPar(idPar.toString());
 
         }catch (Exception e){
             showErrorWindow(e);
@@ -609,8 +609,7 @@ public class ModifyParafianin {
 
         if(prevNum!=null && !prevNum.isEmpty()){
             id_osoby.setText(prevNum);
-        }
-        else {
+            showPar(prevNum);
             prevNum=null;
         }
 

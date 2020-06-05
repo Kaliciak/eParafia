@@ -42,6 +42,7 @@
                         <ContextMenu>
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#showSzczegoly" text="Szczegóły" />
+                              <MenuItem mnemonicParsing="false" onAction="#editParafianin" text="Edytuj" />
                           </items>
                         </ContextMenu>
                      </contextMenu>

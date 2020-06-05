@@ -1,6 +1,5 @@
 package eParafia.Controller;
 
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -10,6 +9,7 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -17,8 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import static eParafia.Controller.Dane.connection;
-import static eParafia.Controller.Dane.showErrorWindow;
+import static eParafia.Controller.Dane.*;
 
 public class AdvancedParafianie {
 
@@ -382,6 +381,16 @@ public class AdvancedParafianie {
             basicParafie.setItems(parafianieRows);
         }
         catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
+    void editParafianin(ActionEvent event) {
+        ModifyParafianin.prevNum=basicParafie.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
+        try {
+            replaceSceneContent("FXML/modifyParafianin.fxml");
+        }catch (Exception e){
             showErrorWindow(e);
         }
     }
