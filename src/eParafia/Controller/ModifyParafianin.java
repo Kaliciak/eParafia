@@ -10,10 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import static eParafia.Controller.Dane.*;
 
@@ -127,6 +125,20 @@ public class ModifyParafianin {
     @FXML
     private TextField id_parafii;
 
+    @FXML
+    private ComboBox<String> plec;
+
+    public void wypelnijCombo(){
+        try {
+            plec.getItems().add("M");
+            plec.getItems().add("K");
+            plec.getSelectionModel().selectFirst();
+        }
+        catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
     void dodajOsobe(){
         try {
             Statement stmt = connection.createStatement();
@@ -146,7 +158,7 @@ public class ModifyParafianin {
             stmt = connection.createStatement();
             ResultSet rs= stmt.executeQuery(query);
 
-            String aId=null;
+            String aId=null; //id adresu
             while (rs.next()){
                 aId=rs.getString("id_adresu");
             }
@@ -169,13 +181,218 @@ public class ModifyParafianin {
 
                 stmt = connection.createStatement();
                 stmt.executeUpdate(query);
+                aId=nId.toString();
             }
 
-            Integer newParafianinId;
+            query="INSERT INTO parafianie (";
+            query+="id_adresu";
+            if(imie.getText()!=null && !imie.getText().isEmpty()){
+                query+=",";
+                query+="imie";
+            }
+            if(drugie_imie.getText()!=null && !drugie_imie.getText().isEmpty()){
+                query+=",";
+                query+="drugie_imie";
+            }
+            if(imie_z_bierzmowania.getText()!=null && !imie_z_bierzmowania.getText().isEmpty()){
+                query+=",";
+                query+="imie_z_bierzmowania";
+            }
+            if(nazwisko.getText()!=null && !nazwisko.getText().isEmpty()){
+                query+=",";
+                query+="nazwisko";
+            }
+            if(plec.getSelectionModel().getSelectedItem()!=null && !plec.getSelectionModel().getSelectedItem().isEmpty()){
+                query+=",";
+                query+="plec";
+            }
+            if(data_narodzin.getValue()!=null){
+                query+=",";
+                query+="data_narodzin";
+            }
+            if(data_zgonu.getValue()!=null){
+                query+=",";
+                query+="data_zgonu";
+            }
+            if(id_ojca.getText()!=null && !id_ojca.getText().isEmpty()){
+                query+=",";
+                query+="id_ojca";
+            }
+            if(id_matki.getText()!=null && !id_matki.getText().isEmpty()){
+                query+=",";
+                query+="id_matki";
+            }
+            if(id_ojca_chrzestnego.getText()!=null && !id_ojca_chrzestnego.getText().isEmpty()){
+                query+=",";
+                query+="id_ojca_chrzestnego";
+            }
+            if(id_matki_chrzestnej.getText()!=null && !id_matki_chrzestnej.getText().isEmpty()){
+                query+=",";
+                query+="id_matki_chrzestnej";
+            }
+            query+=") VALUES (";
+            ////wstawianie
+
+            query+="'"+aId+"'";
+            if(imie.getText()!=null && !imie.getText().isEmpty()){
+                query+=",";
+                query+="'"+imie.getText()+"'";
+            }
+            if(drugie_imie.getText()!=null && !drugie_imie.getText().isEmpty()){
+                query+=",";
+                query+="'"+drugie_imie.getText()+"'";
+            }
+            if(imie_z_bierzmowania.getText()!=null && !imie_z_bierzmowania.getText().isEmpty()){
+                query+=",";
+                query+="'"+imie_z_bierzmowania.getText()+"'";
+            }
+            if(nazwisko.getText()!=null && !nazwisko.getText().isEmpty()){
+                query+=",";
+                query+="'"+nazwisko.getText()+"'";
+            }
+            if(plec.getSelectionModel().getSelectedItem()!=null && !plec.getSelectionModel().getSelectedItem().isEmpty()){
+                query+=",";
+                query+="'"+plec.getSelectionModel().getSelectedItem()+"'";
+            }
+            if(data_narodzin.getValue()!=null){
+                query+=",";
+                query+="'"+data_narodzin.getValue()+"'";
+            }
+            if(data_zgonu.getValue()!=null){
+                query+=",";
+                query+="'"+data_zgonu.getValue()+"'";
+            }
+            if(id_ojca.getText()!=null && !id_ojca.getText().isEmpty()){
+                query+=",";
+                query+="'"+id_ojca.getText()+"'";
+            }
+            if(id_matki.getText()!=null && !id_matki.getText().isEmpty()){
+                query+=",";
+                query+="'"+id_matki.getText()+"'";
+            }
+            if(id_ojca_chrzestnego.getText()!=null && !id_ojca_chrzestnego.getText().isEmpty()){
+                query+=",";
+                query+="'"+id_ojca_chrzestnego.getText()+"'";
+            }
+            if(id_matki_chrzestnej.getText()!=null && !id_matki_chrzestnej.getText().isEmpty()){
+                query+=",";
+                query+="'"+id_matki_chrzestnej.getText()+"'";
+            }
+            query+=")";
+            System.out.println(query);
+
             stmt = connection.createStatement();
-            //query=""
+            stmt.executeUpdate(query);
+
+            //wstawianie do historii parafian
+
+            Integer newParafianinId=0;
+            stmt = connection.createStatement();
+            query="select max(id_osoby) AS \"id\" from parafianie";
+            rs=stmt.executeQuery(query);
+            while (rs.next()){
+                newParafianinId=rs.getInt("id");
+            }
+
+            if(id_parafii.getText()!=null && !id_parafii.getText().isEmpty()){
+                query="INSERT INTO historia_paraifan(id_osoby, id_parafii, apostazja)\n" +
+                        "VALUES\n" +
+                        "\t(";
+                query+="'"+newParafianinId+"',";
+                query+="'"+id_parafii.getText()+"',";
+                query+="false)";
+                stmt = connection.createStatement();
+                stmt.executeUpdate(query);
+            }
+
+            showPar(newParafianinId);
 
         }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    void showPar(Integer parId){
+        try {
+            Statement stmt = connection.createStatement();
+            query = "SELECT \n" +
+                    "p.id_osoby AS \"id_osoby\",\n" +
+                    "p.imie AS \"imie\",\n" +
+                    "p.drugie_imie AS \"drugie_imie\",\n" +
+                    "p.imie_z_bierzmowania AS \"imie_z_bierzmowania\",\n" +
+                    "p.nazwisko AS \"nazwisko\",\n" +
+                    "p.plec AS \"plec\",\n" +
+                    "p.data_narodzin AS \"data_narodzin\",\n" +
+                    "p.data_zgonu AS \"data_zgonu\",\n" +
+                    "a.miasto AS \"miasto\",\n" +
+                    "a.ulica AS \"ulica\",\n" +
+                    "a.nr_domu AS \"nr_domu\",\n" +
+                    "hp.id_parafii AS \"id_parafii\",\n" +
+                    "p.id_ojca AS \"id_ojca\",\n" +
+                    "p.id_matki AS \"id_matki\",\n" +
+                    "p.id_ojca_chrzestnego AS \"id_ojca_chrzestnego\",\n" +
+                    "p.id_matki_chrzestnej AS \"id_matki_chrzestnej\"\n" +
+                    "\tFROM parafianie p LEFT JOIN adresy a ON p.id_adresu=a.id_adresu\n" +
+                    "\tLEFT JOIN historia_parafian hp ON p.id_osoby=hp.id_osoby\n" +
+                    "\tWHERE hp.data_odejscia IS NULL" +
+                    " AND p.id_osoby='" + parId +"'";
+
+            wyszukaniParafianie=stmt.executeQuery(query);
+            insertParafianie();
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    public void insertParafianie(){
+
+        parafianieRows.clear();
+
+        try{
+            ResultSet rs=wyszukaniParafianie;
+
+            while (rs.next()){
+                parafianieRows.add(new AdvancedParafianieRow(
+                        rs.getInt("id_osoby"),
+                        rs.getString("imie"),
+                        rs.getString("drugie_imie"),
+                        rs.getString("imie_z_bierzmowania"),
+                        rs.getString("nazwisko"),
+                        rs.getString("plec"),
+                        rs.getDate("data_narodzin"),
+                        rs.getDate("data_zgonu"),
+                        rs.getString("miasto"),
+                        rs.getString("ulica"),
+                        rs.getString("nr_domu"),
+                        rs.getInt("id_parafii"),
+                        rs.getInt("id_ojca"),
+                        rs.getInt("id_matki"),
+                        rs.getInt("id_ojca_chrzestnego"),
+                        rs.getInt("id_matki_chrzestnej")
+                ));
+            }
+
+
+            id_osobyColumn.setCellValueFactory(new PropertyValueFactory<>("id_osoby"));
+            imieColumn.setCellValueFactory(new PropertyValueFactory<>("imie"));
+            drugie_imieColumn.setCellValueFactory(new PropertyValueFactory<>("drugie_imie"));
+            imie_z_bierzmowaniaColumn.setCellValueFactory(new PropertyValueFactory<>("imie_z_bierzmowania"));
+            nazwiskoColumn.setCellValueFactory(new PropertyValueFactory<>("nazwisko"));
+            plecColumn.setCellValueFactory(new PropertyValueFactory<>("plec"));
+            data_narodzinColumn.setCellValueFactory(new PropertyValueFactory<>("data_narodzin"));
+            data_zgonuColumn.setCellValueFactory(new PropertyValueFactory<>("data_zgonu"));
+            miastoColumn.setCellValueFactory(new PropertyValueFactory<>("miasto"));
+            ulicaColumn.setCellValueFactory(new PropertyValueFactory<>("ulica"));
+            nr_domuColumn.setCellValueFactory(new PropertyValueFactory<>("nr_domu"));
+            id_parafiiColumn.setCellValueFactory(new PropertyValueFactory<>("id_parafii"));
+            id_ojcaColumn.setCellValueFactory(new PropertyValueFactory<>("id_ojca"));
+            id_matkiColumn.setCellValueFactory(new PropertyValueFactory<>("id_matki"));
+            id_ojca_chrzestnegoColumn.setCellValueFactory(new PropertyValueFactory<>("id_ojca_chrzestnego"));
+            id_matki_chrzestnejColumn.setCellValueFactory(new PropertyValueFactory<>("id_matki_chrzestnej"));
+
+            basicParafie.setItems(parafianieRows);
+        }
+        catch (Exception e){
             showErrorWindow(e);
         }
     }
@@ -232,5 +449,6 @@ public class ModifyParafianin {
             prevNum=null;
         }
 
+        wypelnijCombo();
     }
 }

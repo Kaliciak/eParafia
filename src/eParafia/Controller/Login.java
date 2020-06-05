@@ -55,7 +55,7 @@ public class Login {
             System.out.println("Polaczono");
 
             try{
-                replaceSceneContent("FXML/modifyParafianin.fxml");
+                replaceSceneContent("FXML/mainMenu.fxml");
             }catch (Exception e){
                 showErrorWindow(e);
                 System.out.println("HERE");

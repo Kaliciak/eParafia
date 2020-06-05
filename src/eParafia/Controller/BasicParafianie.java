@@ -235,6 +235,15 @@ public class BasicParafianie {
     }
 
     @FXML
+    void dodajOsobe(ActionEvent event) {
+        try {
+            openSecondStage("FXML/modifyParafianin.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
     void initialize() {
         assert basicParafie != null : "fx:id=\"basicParafie\" was not injected: check your FXML file 'basicParafianie.fxml'.";
         assert id_osobyColumn != null : "fx:id=\"id_osobyColumn\" was not injected: check your FXML file 'basicParafianie.fxml'.";
