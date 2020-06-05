@@ -1,12 +1,9 @@
 package eParafia.Controller;
 
 import java.net.URL;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -81,6 +78,7 @@ public class BasicParafianie {
                         rs.getDate("data_zgonu")
                 ));
             }
+
 
             id_osobyColumn.setCellValueFactory(new PropertyValueFactory<>("id_osoby"));
             imieColumn.setCellValueFactory(new PropertyValueFactory<>("imie"));

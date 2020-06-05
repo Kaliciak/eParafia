@@ -3,7 +3,7 @@ package eParafia.Controller;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.sql.Date;
+import java.util.Date;
 import java.time.LocalDate;
 
 public class BasicParafianieRow {
