@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.BasicParafie">
    <children>
-      <TableView fx:id="basicParafie" layoutX="71.0" layoutY="111.0" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <TableView fx:id="basicParafie" layoutX="71.0" layoutY="111.0" prefHeight="341.0" prefWidth="1000.0" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <columns>
           <TableColumn fx:id="id_pariafiiColumn" prefWidth="85.33333027362823" text="id parafii" />
           <TableColumn fx:id="nazwaColumn" prefWidth="277.8666229248047" text="nazwa" />
@@ -29,5 +34,51 @@
             </Menu>
          </menus>
       </MenuBar>
+      <Text layoutX="26.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parametry wyszukiwania parafii" textAlignment="CENTER" wrappingWidth="1000.2699584960938" AnchorPane.bottomAnchor="210.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nazwa" layoutX="195.0" layoutY="451.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.bottomAnchor="123.6" AnchorPane.leftAnchor="195.0" />
+      <Text layoutX="85.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id parafii" AnchorPane.bottomAnchor="165.482421875" AnchorPane.leftAnchor="85.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="zakon" layoutX="219.0" layoutY="500.0" prefWidth="150.0" AnchorPane.bottomAnchor="74.4" AnchorPane.leftAnchor="219.0" />
+      <Text layoutX="97.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="zakon" AnchorPane.bottomAnchor="74.4" AnchorPane.leftAnchor="85.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="id_parafii" layoutX="195.0" layoutY="410.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.bottomAnchor="165.482421875" AnchorPane.leftAnchor="195.0" />
+      <Text layoutX="95.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nazwa" AnchorPane.bottomAnchor="123.6" AnchorPane.leftAnchor="85.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="miasto" layoutX="663.0" layoutY="410.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.bottomAnchor="163.6" AnchorPane.leftAnchor="700.0" />
+      <Text layoutX="542.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="miasto" AnchorPane.bottomAnchor="165.482421875" AnchorPane.leftAnchor="590.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="ulica" layoutX="663.0" layoutY="450.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.bottomAnchor="123.6" AnchorPane.leftAnchor="700.0" />
+      <Text layoutX="542.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ulica" AnchorPane.bottomAnchor="123.6" AnchorPane.leftAnchor="590.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nr_domu" layoutX="663.0" layoutY="499.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.bottomAnchor="74.4" AnchorPane.leftAnchor="700.0" />
+      <Text layoutX="508.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numer domu" AnchorPane.bottomAnchor="74.4" AnchorPane.leftAnchor="590.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="434.0" layoutY="542.0" mnemonicParsing="false" onAction="#wyszukajParafie" prefHeight="32.0" prefWidth="134.0" text="Wyszukaj" AnchorPane.bottomAnchor="14.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

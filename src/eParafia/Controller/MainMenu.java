@@ -26,7 +26,7 @@ public class MainMenu {
     @FXML
     void goToParafie(){
         try {
-            replaceSceneContent("FXML/wyszukajParafie.fxml");
+            replaceSceneContent("FXML/basicParafie.fxml");
         }catch (Exception e){
             showErrorWindow(e);
         }

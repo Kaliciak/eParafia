@@ -9,9 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import static eParafia.Controller.Dane.*;
@@ -54,8 +52,53 @@ public class BasicParafie {
     @FXML
     private MenuItem logout;
 
+    @FXML
+    private TextField nazwa;
+
+    @FXML
+    private ComboBox<String> zakon;
+
+    @FXML
+    private TextField id_parafii;
+
+    @FXML
+    private TextField miasto;
+
+    @FXML
+    private TextField ulica;
+
+    @FXML
+    private TextField nr_domu;
+
+    boolean isWhere;
+    String query;
+
+    void prepParafie(){
+        try {
+
+            query=
+                    "SELECT \n" +
+                            "p.id_parafii AS \"id_parafii\",\n" +
+                            "p.nazwa AS \"nazwa\",\n" +
+                            "z.nazwa AS \"zakon\",\n" +
+                            "a.miasto AS \"miasto\",\n" +
+                            "a.ulica AS \"ulica\",\n" +
+                            "a.nr_domu AS \"nr_domu\"\n" +
+                            "\tFROM parafie p LEFT JOIN adresy a ON p.id_adresu=a.id_adresu\n" +
+                            "\tLEFT JOIN zakony z ON p.zakon=z.id_zakonu";
+
+            Statement stmt = connection.createStatement();
+            wyszukaneParafie=stmt.executeQuery(query);
+        }
+        catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
      void insertParafie(){
          try {
+             parafieRows.clear();
+
              ResultSet rs=wyszukaneParafie;
 
              while (rs.next()){
@@ -82,6 +125,100 @@ public class BasicParafie {
          }
      }
 
+    public void putWhere(){
+        if(!isWhere){
+            isWhere=true;
+            query+=" WHERE ";
+        }
+        else {
+            query+=" AND ";
+        }
+    }
+
+    @FXML
+    void wyszukajParafie(ActionEvent event) {
+        String idPar=id_parafii.getText();
+        String naz=nazwa.getText();
+        String zak=zakon.getSelectionModel().getSelectedItem();
+        String miast=miasto.getText();
+        String ul=ulica.getText();
+        String nrDom=nr_domu.getText();
+
+        isWhere=false;
+
+        try {
+            Statement stmt = connection.createStatement();
+            query=
+                    "SELECT \n" +
+                            "p.id_parafii AS \"id_parafii\",\n" +
+                            "p.nazwa AS \"nazwa\",\n" +
+                            "z.nazwa AS \"zakon\",\n" +
+                            "a.miasto AS \"miasto\",\n" +
+                            "a.ulica AS \"ulica\",\n" +
+                            "a.nr_domu AS \"nr_domu\"\n" +
+                            "\tFROM parafie p LEFT JOIN adresy a ON p.id_adresu=a.id_adresu\n" +
+                            "\tLEFT JOIN zakony z ON p.zakon=z.id_zakonu";
+
+            if(idPar!=null && !idPar.isEmpty()){
+                putWhere();
+                query+="id_parafii='"+idPar+"'";
+            }
+            if(naz!=null && !naz.isEmpty()){
+                putWhere();
+                query+="p.nazwa LIKE '%"+naz+"%'";
+            }
+            if(zak!=null && !zak.isEmpty()){
+                if(zak.equals("Każdy")){}
+                else if(zak.equals("Bez zakonu")){
+                    putWhere();
+                    query+="zakon IS NULL";
+                }
+                else{
+                    putWhere();
+                    query+="z.nazwa LIKE '%"+zak+"%'";
+                }
+            }
+            if(miast!=null && !miast.isEmpty()){
+                putWhere();
+                query+="miasto LIKE '%"+miast+"%'";
+            }
+            if(ul!=null && !ul.isEmpty()){
+                putWhere();
+                query+="ulica LIKE '%"+ul+"%'";
+            }
+            if(nrDom!=null && !nrDom.isEmpty()){
+                putWhere();
+                query+="nr_domu='"+nrDom+"'";
+            }
+
+            wyszukaneParafie=stmt.executeQuery(query);
+            insertParafie();
+        }
+        catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    public void wypelnijCombo(){
+        try {
+            Statement stmt = connection.createStatement();
+            String query= "SELECT * FROM zakony";
+            ResultSet rs=stmt.executeQuery(query);
+
+            zakon.getItems().add("Każdy");
+            zakon.getItems().add("Bez zakonu");
+
+            while (rs.next()){
+                zakon.getItems().add(rs.getString("nazwa"));
+            }
+
+            zakon.getSelectionModel().selectFirst();
+        }
+        catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
     @FXML
     void initialize() {
         assert basicParafie != null : "fx:id=\"basicParafie\" was not injected: check your FXML file 'basicParafie.fxml'.";
@@ -94,7 +231,9 @@ public class BasicParafie {
         assert mainMenu != null : "fx:id=\"mainMenu\" was not injected: check your FXML file 'basicParafie.fxml'.";
         assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'basicParafie.fxml'.";
 
+        prepParafie();
         insertParafie();
+        wypelnijCombo();
     }
 
     //MENU

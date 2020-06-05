@@ -121,7 +121,6 @@ public class WyszukajParafie {
         catch (Exception e){
             showErrorWindow(e);
         }
-
     }
 
     public void wypelnijCombo(){

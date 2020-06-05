@@ -57,7 +57,7 @@ public class Login {
             try{
                 replaceSceneContent("FXML/mainMenu.fxml");
             }catch (Exception e){
-                e.printStackTrace();
+                showErrorWindow(e);
                 System.out.println("HERE");
             }
 
