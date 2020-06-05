@@ -9,13 +9,17 @@ public class SakramentyRow{
     SimpleIntegerProperty id;
     Date data;
     SimpleStringProperty sakrament;
-    SimpleStringProperty parafia;
+    SimpleIntegerProperty parafia;
+    SimpleStringProperty parafiaName;
+    SimpleIntegerProperty id_szafarza;
 
-    public SakramentyRow(int id, Date data, String sakrament, String parafia) {
+    public SakramentyRow(int id, Date data, String sakrament, Integer parafia, String parafiaName, int id_szafarza) {
         this.id = new SimpleIntegerProperty(id);
         this.data = data;
         this.sakrament = new SimpleStringProperty(sakrament);
-        this.parafia = new SimpleStringProperty(parafia);
+        this.parafia = new SimpleIntegerProperty(parafia);
+        this.parafiaName = new SimpleStringProperty(parafiaName);
+        this.id_szafarza = new SimpleIntegerProperty(id_szafarza);
     }
 
     public int getId() {
@@ -35,7 +39,7 @@ public class SakramentyRow{
     }
 
     public void setData(Date data) {
-        this.data=data;
+        this.data = data;
     }
 
     public String getSakrament() {
@@ -50,15 +54,39 @@ public class SakramentyRow{
         this.sakrament.set(sakrament);
     }
 
-    public String getParafia() {
+    public int getParafia() {
         return parafia.get();
     }
 
-    public SimpleStringProperty parafiaProperty() {
+    public SimpleIntegerProperty parafiaProperty() {
         return parafia;
     }
 
-    public void setParafia(String parafia) {
+    public void setParafia(int parafia) {
         this.parafia.set(parafia);
+    }
+
+    public String getParafiaName() {
+        return parafiaName.get();
+    }
+
+    public SimpleStringProperty parafiaNameProperty() {
+        return parafiaName;
+    }
+
+    public void setParafiaName(String parafiaName) {
+        this.parafiaName.set(parafiaName);
+    }
+
+    public int getId_szafarza() {
+        return id_szafarza.get();
+    }
+
+    public SimpleIntegerProperty id_szafarzaProperty() {
+        return id_szafarza;
+    }
+
+    public void setId_szafarza(int id_szafarza) {
+        this.id_szafarza.set(id_szafarza);
     }
 }

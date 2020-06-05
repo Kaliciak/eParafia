@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.SakramentView">
+   <children>
+      <MenuBar layoutX="1.0" layoutY="1.0" prefHeight="25.0" prefWidth="998.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu fx:id="mainMenu" mnemonicParsing="false" text="Opcje">
+               <items>
+                  <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#goToMenu" text="Menu główne" />
+                  <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#wyloguj" text="Wyloguj" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Text fx:id="sakrName" layoutX="14.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sakrament: " wrappingWidth="350.0800399780274">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="dataName" layoutX="14.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data: " wrappingWidth="350.0800399780274">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="parafiaName" layoutX="14.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parafia:" wrappingWidth="340.74672698974615">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TableView fx:id="participants" layoutX="4.0" layoutY="188.0" prefHeight="200.0" prefWidth="991.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="69.99999761581421" text="ID" />
+          <TableColumn fx:id="imieColumn" prefWidth="120.00000762939453" text="Imie" />
+            <TableColumn fx:id="nazwiskoColumn" prefWidth="178.6667022705078" text="Nazwisko" />
+            <TableColumn fx:id="uczestnictwoColumn" prefWidth="559.3333435058594" text="Rodzaj uczestnictwa" />
+        </columns>
+      </TableView>
+      <Text layoutX="372.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Uczestnicy:" wrappingWidth="138.0800552368164">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Button layoutX="14.0" layoutY="396.0" mnemonicParsing="false" onAction="#add" prefHeight="58.0" prefWidth="298.0" text="Dodaj uczestnika" />
+      <Button layoutX="320.0" layoutY="396.0" mnemonicParsing="false" onAction="#edit" prefHeight="58.0" prefWidth="298.0" text="Edytuj" />
+      <Button layoutX="625.0" layoutY="396.0" mnemonicParsing="false" onAction="#returnToSakramenty" prefHeight="58.0" prefWidth="298.0" text="Wróć do wszystkich sakramentów" />
+      <Text layoutX="373.0" layoutY="60.0" onDragDetected="#add" strokeType="OUTSIDE" strokeWidth="0.0" text="Dane szafarza:" wrappingWidth="191.4133682250977">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="szafarzName" layoutX="373.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię:" wrappingWidth="291.4133682250977">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="szafarzSurname" layoutX="372.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko:" wrappingWidth="273.4134597778321">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
