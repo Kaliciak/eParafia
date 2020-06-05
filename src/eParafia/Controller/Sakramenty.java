@@ -50,9 +50,44 @@ public class Sakramenty {
             );
     @FXML
     private ComboBox<String> sakrType;
-    ObservableList<String> parafiaOptions = FXCollections.observableArrayList();
+    public class ShortParafia {
+        SimpleIntegerProperty id;
+        SimpleStringProperty nazwa;
+        ShortParafia(int id, String nazwa) {
+            this.id = new SimpleIntegerProperty(id);
+            this.nazwa = new SimpleStringProperty(nazwa);
+        }
+
+        public int getId() {
+            return id.get();
+        }
+
+        public SimpleIntegerProperty idProperty() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id.set(id);
+        }
+
+        public String getNazwa() {
+            return nazwa.get();
+        }
+
+        public SimpleStringProperty nazwaProperty() {
+            return nazwa;
+        }
+
+        public void setNazwa(String nazwa) {
+            this.nazwa.set(nazwa);
+        }
+        public String toString() {
+            return nazwa.getValue();
+        }
+    }
+    ObservableList<ShortParafia> parafiaOptions = FXCollections.observableArrayList();
     @FXML
-    private ComboBox<String> parafia;
+    private ComboBox<ShortParafia> parafia;
 
     @FXML
     private DatePicker dateSince;
@@ -72,7 +107,13 @@ public class Sakramenty {
 
     @FXML
     void show(javafx.event.ActionEvent event) {
-
+        if (table.getSelectionModel().getSelectedItem()==null) return;
+        SakramentView.currentSakrament=table.getSelectionModel().getSelectedItem();
+        try {
+            replaceSceneContent("FXML/sakramentData.fxml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -88,19 +129,21 @@ public class Sakramenty {
         try {
             Statement stmt = connection.createStatement();
             String query=
-                    "select id_sakramentu as \"id\", \"data\", sakrament, nazwa as \"parafia\" from sakramenty left outer join parafie on(id_parafii=parafia)";
+                    "select s.*, nazwa|| ', ' || miasto || ', ' || ulica ||' '|| nr_domu as \"parafiaName\" from sakramenty s left outer join parafie left outer join adresy using(id_adresu) on(parafia=id_parafii);";
             ResultSet rs=stmt.executeQuery(query);
 
             while (rs.next()){
                 if(dateTo.getValue()!=null&&rs.getDate("data").toLocalDate().isAfter(dateTo.getValue())
                 || dateSince.getValue()!=null&&rs.getDate("data").toLocalDate().isBefore(dateSince.getValue())
                 || sakrType.getValue()!=null &&!sakrType.getValue().equals(rs.getString("sakrament"))
-                || parafia.getValue()!=null && !parafia.getValue().equals(rs.getString("parafia")));
+                || parafia.getValue()!= null &&parafia.getValue().id.getValue()!=rs.getInt("parafia"));
                 else sakramentyRows.add(new SakramentyRow(
-                        rs.getInt("id"),
+                        rs.getInt("id_sakramentu"),
                         rs.getDate("data"),
                         rs.getString("sakrament"),
-                        rs.getString("parafia")
+                        rs.getInt("parafia"),
+                        rs.getString("parafiaName"),
+                        rs.getInt("id_szafarza")
                 ));
             }
             table.setItems(sakramentyRows);
@@ -139,17 +182,17 @@ public class Sakramenty {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         dataColumn.setCellValueFactory(new PropertyValueFactory<>("data"));
         sakramentColumn.setCellValueFactory(new PropertyValueFactory<>("sakrament"));
-        parafiaColumn.setCellValueFactory(new PropertyValueFactory<>("parafia"));
+        parafiaColumn.setCellValueFactory(new PropertyValueFactory<>("parafiaName"));
         insertData();
         parafiaOptions.add(null);
         try {
             Statement stmt = connection.createStatement();
             String query=
-                    "select nazwa from parafie";
+                    "select id_parafii,  nazwa|| ', ' || miasto || ', ' || ulica ||' '|| nr_domu as \"nazwa\" from parafie  left outer join adresy using(id_adresu);";
             ResultSet rs=stmt.executeQuery(query);
 
             while (rs.next()){
-                parafiaOptions.add(rs.getString("nazwa"));
+                parafiaOptions.add(new ShortParafia(rs.getInt("id_parafii"), rs.getString("nazwa")));
             }
         }
         catch (Exception e){
