@@ -12,7 +12,6 @@ import static eParafia.Controller.Dane.connection;
 
 public class FullParafianieEntity {
     SimpleIntegerProperty id_osoby;
-    SimpleIntegerProperty id_parafii;
     SimpleStringProperty imie;
     SimpleStringProperty drugie_imie;
     SimpleStringProperty imie_z_bierzmowania;
@@ -25,9 +24,8 @@ public class FullParafianieEntity {
     SimpleIntegerProperty id_matki;
     SimpleIntegerProperty id_ojca_chrzestnego;
     SimpleIntegerProperty id_matki_chrzestnej;
-    public FullParafianieEntity(int id_osoby, int id_parafii, String imie, String drugie_imie, String imie_z_bierzmowania,String nazwisko, String plec, int id_adresu, Date data_narodzin, Date data_zgonu, int id_ojca, int id_matki, int id_ojca_chrzestnego, int id_matki_chrzestnej) {
+    public FullParafianieEntity(int id_osoby, String imie, String drugie_imie, String imie_z_bierzmowania,String nazwisko, String plec, int id_adresu, Date data_narodzin, Date data_zgonu, int id_ojca, int id_matki, int id_ojca_chrzestnego, int id_matki_chrzestnej) {
         this.id_osoby=new SimpleIntegerProperty(id_osoby);
-        this.id_parafii = new SimpleIntegerProperty(id_parafii);
         this.imie = new SimpleStringProperty(imie);
         this.drugie_imie=new SimpleStringProperty(drugie_imie);
         this.imie_z_bierzmowania=new SimpleStringProperty(imie_z_bierzmowania);
@@ -49,7 +47,6 @@ public class FullParafianieEntity {
             while(rs.next())
                 out.add(new FullParafianieEntity(
                     rs.getInt("id_osoby"),
-                    rs.getInt("id_parafii"),
                     rs.getString("imie"),
                     rs.getString("drugie_imie"),
                     rs.getString( "imie_z_bierzmowania"),
@@ -78,18 +75,6 @@ public class FullParafianieEntity {
 
     public void setId_osoby(int id_osoby) {
         this.id_osoby.set(id_osoby);
-    }
-
-    public int getId_parafii() {
-        return id_parafii.get();
-    }
-
-    public SimpleIntegerProperty id_parafiiProperty() {
-        return id_parafii;
-    }
-
-    public void setId_parafii(int id_parafii) {
-        this.id_parafii.set(id_parafii);
     }
 
     public String getImie() {
