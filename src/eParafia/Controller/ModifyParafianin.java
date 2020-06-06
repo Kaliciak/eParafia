@@ -573,6 +573,15 @@ public class ModifyParafianin {
     }
 
     @FXML
+    void zaawansowaneSzukanie(ActionEvent event) {
+        try {
+            openSecondStage("FXML/advancedParafianie.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
     void initialize() {
         assert basicParafie != null : "fx:id=\"basicParafie\" was not injected: check your FXML file 'modifyParafianin.fxml'.";
         assert id_osobyColumn != null : "fx:id=\"id_osobyColumn\" was not injected: check your FXML file 'modifyParafianin.fxml'.";
@@ -607,13 +616,14 @@ public class ModifyParafianin {
         assert nr_domu != null : "fx:id=\"nr_domu\" was not injected: check your FXML file 'modifyParafianin.fxml'.";
         assert id_parafii != null : "fx:id=\"id_parafii\" was not injected: check your FXML file 'modifyParafianin.fxml'.";
 
+        wypelnijCombo();
+
         if(prevNum!=null && !prevNum.isEmpty()){
             id_osoby.setText(prevNum);
             showPar(prevNum);
+            plec.getSelectionModel().select(basicParafie.getItems().get(0).plec.getValue());
             prevNum=null;
         }
-
-        wypelnijCombo();
     }
 
     //MENU

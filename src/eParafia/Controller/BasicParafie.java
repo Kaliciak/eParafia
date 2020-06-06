@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.swing.plaf.nimbus.State;
+
 import static eParafia.Controller.Dane.*;
 
 public class BasicParafie {
@@ -201,7 +203,7 @@ public class BasicParafie {
     public void wypelnijCombo(){
         try {
             Statement stmt = connection.createStatement();
-            String query= "SELECT * FROM zakony";
+            String query= "SELECT * FROM zakony ORDER BY nazwa";
             ResultSet rs=stmt.executeQuery(query);
 
             zakon.getItems().add("Każdy");
@@ -216,6 +218,46 @@ public class BasicParafie {
         catch (Exception e){
             showErrorWindow(e);
         }
+    }
+
+    String znajdzAdres(String mia, String ul, String nrDom) throws Exception{
+        Statement stmt;
+        ResultSet rs;
+        query="SELECT * FROM ADRESY WHERE ";
+        query+="miasto='" + mia + "'";
+        query+=" AND ulica='" + ul + "'";
+        query+= " AND nr_domu='" + nrDom + "'";
+
+        stmt = connection.createStatement();
+        rs= stmt.executeQuery(query);
+        String nAd=null;
+        while (rs.next()){
+            nAd=rs.getString("id_adresu");
+            break;
+        }
+
+        if(nAd==null){
+            stmt = connection.createStatement();
+            ResultSet nid= stmt.executeQuery("SELECT max(id_adresu) AS \"id\" FROM adresy");
+            Integer nId=0;
+            while (nid.next()){
+                nId=nid.getInt("id");
+            }
+            nId++;
+            query="INSERT INTO ADRESY(id_adresu, miasto, ulica, nr_domu)\n" +
+                    "VALUES\n" +
+                    " (\n";
+            query+= "'"+ nId + "'," ;
+            query+="'"+ mia + "'," ;
+            query+="'"+ ul + "'," ;
+            query+= "'"+nrDom + "')" ;
+
+            stmt = connection.createStatement();
+            stmt.executeUpdate(query);
+            nAd=nId.toString();
+        }
+
+        return nAd;
     }
 
     @FXML
@@ -242,6 +284,136 @@ public class BasicParafie {
         catch (Exception e){
             showErrorWindow(e);
         }
+    }
+
+    void dodajParafie() throws Exception{
+        if(zakon.getSelectionModel().getSelectedItem().equals("Każdy")){
+            throw new Exception("Należy wybrać odpowiedni zakon");
+        }
+        if(nazwa.getText()==null || nazwa.getText().isEmpty()){
+            throw new Exception("Należy podać nazwę parafii");
+        }
+        String mia=miasto.getText();
+        String ul=ulica.getText();
+        String nrDom=nr_domu.getText();
+        if(mia==null || mia.isEmpty() || ul==null || ul.isEmpty() || nrDom==null || nrDom.isEmpty()){
+            throw new Exception("Należy podać odpowiedni adres");
+        }
+        String aId=znajdzAdres(miasto.getText(), ulica.getText(), nr_domu.getText());
+        Statement stmt;
+        ResultSet rs;
+
+        query="INSERT INTO parafie(nazwa, zakon, id_adresu) VALUES (";
+        query+="'"+nazwa.getText()+"'";
+        query+=",";
+        if(zakon.getSelectionModel().getSelectedItem().equals("Bez zakonu")){
+            query+="null";
+        }
+        else {
+            String zId="0"; //id zakonu
+            String pq="SELECT * FROM zakony WHERE nazwa = '";
+            pq+=zakon.getSelectionModel().getSelectedItem()+"'";
+            stmt=connection.createStatement();
+            rs=stmt.executeQuery(pq);
+            while(rs.next()){
+                zId=rs.getString("id_zakonu");
+                break;
+            }
+            query+="'"+zId+"'";
+        }
+        query+=",";
+        query+="'"+aId+"')";
+        stmt=connection.createStatement();
+        stmt.executeUpdate(query);
+
+    }
+
+    void modyfikujParafie() throws Exception{
+        if(zakon.getSelectionModel().getSelectedItem().equals("Każdy")){
+            throw new Exception("Należy wybrać odpowiedni zakon");
+        }
+
+        String mia=miasto.getText();
+        String ul=ulica.getText();
+        String nrDom=nr_domu.getText();
+
+        Statement stmt;
+        ResultSet rs;
+
+        String sAd="";
+        query="SELECT * FROM parafie WHERE id_parafii='";
+        query+=id_parafii.getText()+"'";
+        stmt=connection.createStatement();
+        rs=stmt.executeQuery(query);
+        while(rs.next()) {
+            sAd=rs.getString("id_adresu");
+            break;
+        }
+        query="SELECT * FROM adresy WHERE id_adresu='";
+        query+=sAd+"'";
+        stmt=connection.createStatement();
+        rs=stmt.executeQuery(query);
+
+        while(rs.next()) {
+            if(mia==null || mia.isEmpty()) {
+                mia=rs.getString("miasto");
+            }
+            if(ul==null || ul.isEmpty() ) {
+                ul = rs.getString("ulica");
+            }
+            if(nrDom==null || nrDom.isEmpty() ) {
+                nrDom = rs.getString("nr_domu");
+            }
+            break;
+        }
+        String aId=znajdzAdres(mia, ul, nrDom);
+
+        query="UPDATE parafie SET ";
+        query+="id_adresu='"+aId+"'";
+        if (nazwa.getText()!=null && !nazwa.getText().isEmpty()){
+            query+=",";
+            query+="nazwa='"+nazwa.getText()+"'";
+        }
+        query+=",zakon=";
+        if(zakon.getSelectionModel().getSelectedItem().equals("Bez zakonu")){
+            query+="null";
+        }
+        else {
+            String zId="0"; //id zakonu
+            String pq="SELECT * FROM zakony WHERE nazwa = '";
+            pq+=zakon.getSelectionModel().getSelectedItem()+"'";
+            stmt=connection.createStatement();
+            rs=stmt.executeQuery(pq);
+            while(rs.next()){
+                zId=rs.getString("id_zakonu");
+                break;
+            }
+            query+="'"+zId+"'";
+        }
+        query+=" WHERE id_parafii='"+id_parafii.getText()+"'";
+        stmt=connection.createStatement();
+        stmt.executeUpdate(query);
+    }
+
+    @FXML
+    void edytujParafie(ActionEvent event){
+        try {
+            if(id_parafii.getText()==null || id_parafii.getText().isEmpty()){
+                dodajParafie();
+            }
+            else {
+                modyfikujParafie();
+            }
+            wyszukajParafie(event);
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
+    void wklepParafie(){
+        id_parafii.setText(basicParafie.getSelectionModel().getSelectedItem().id_parafii.getValue().toString());
+        zakon.getSelectionModel().select(basicParafie.getSelectionModel().getSelectedItem().zakon.getValue());
     }
 
     @FXML

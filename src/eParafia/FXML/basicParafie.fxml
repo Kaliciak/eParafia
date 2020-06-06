@@ -33,6 +33,7 @@
                         <ContextMenu>
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#showPrafianie" text="Wyświetl parafian" />
+                              <MenuItem mnemonicParsing="false" onAction="#wklepParafie" text="Edytuj parafię" />
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -93,6 +94,11 @@
                      </font>
                   </Text>
                   <Button layoutX="437.0" layoutY="175.0" mnemonicParsing="false" onAction="#wyszukajParafie" prefHeight="32.0" prefWidth="134.0" text="Wyszukaj">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="14.0" layoutY="183.0" mnemonicParsing="false" onAction="#edytujParafie" prefHeight="44.0" prefWidth="229.0" text="Dodaj/edytuj parafię">
                      <font>
                         <Font size="20.0" />
                      </font>

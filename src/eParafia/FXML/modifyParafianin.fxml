@@ -14,7 +14,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.ModifyParafianin">
    <children>
       <SplitPane dividerPositions="0.22909698996655517" layoutX="10.0" layoutY="10.0" orientation="VERTICAL" prefHeight="610.0" prefWidth="1010.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -55,8 +54,8 @@
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TextField fx:id="drugie_imie" layoutX="206.0" layoutY="113.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="200.0" />
-                  <Text layoutX="44.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id osoby" AnchorPane.leftAnchor="30.0">
+                  <TextField fx:id="drugie_imie" layoutX="206.0" layoutY="113.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="210.0" />
+                  <Text layoutX="44.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id osoby (przy edycji)" AnchorPane.leftAnchor="30.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -66,7 +65,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="id_osoby" layoutX="171.0" layoutY="25.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="200.0" />
+                  <TextField fx:id="id_osoby" layoutX="171.0" layoutY="25.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="210.0" />
                   <Text layoutX="53.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="drugie imie" AnchorPane.leftAnchor="30.0">
                      <font>
                         <Font size="18.0" />
@@ -82,9 +81,9 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="nazwisko" layoutX="209.0" layoutY="195.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="200.0" />
+                  <TextField fx:id="nazwisko" layoutX="209.0" layoutY="195.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="210.0" />
                   <DatePicker fx:id="data_narodzin" layoutX="813.0" layoutY="23.0" prefHeight="26.0" prefWidth="135.0" AnchorPane.leftAnchor="754.0" AnchorPane.rightAnchor="50.0" />
-                  <TextField fx:id="imie" layoutX="164.0" layoutY="72.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="200.0" />
+                  <TextField fx:id="imie" layoutX="164.0" layoutY="72.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="210.0" />
                   <Text layoutX="62.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="imie" AnchorPane.leftAnchor="30.0">
                      <font>
                         <Font size="18.0" />
@@ -95,7 +94,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="imie_z_bierzmowania" layoutX="238.0" layoutY="157.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="200.0" />
+                  <TextField fx:id="imie_z_bierzmowania" layoutX="238.0" layoutY="157.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="210.0" />
                   <Text layoutX="555.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data zgonu" AnchorPane.leftAnchor="566.0">
                      <font>
                         <Font size="18.0" />
@@ -120,7 +119,7 @@
                      </font>
                   </Text>
                   <TextField fx:id="id_matki" layoutX="743.0" layoutY="137.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="754.0" AnchorPane.rightAnchor="50.0" />
-                  <TextField fx:id="ulica" layoutX="219.0" layoutY="274.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="200.0" />
+                  <TextField fx:id="ulica" layoutX="219.0" layoutY="274.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="210.0" />
                   <Text layoutX="555.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id matki chrzestnej" AnchorPane.leftAnchor="566.0">
                      <font>
                         <Font size="18.0" />
@@ -132,7 +131,7 @@
                      </font>
                   </Text>
                   <TextField fx:id="id_matki_chrzestnej" layoutX="743.0" layoutY="215.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="754.0" AnchorPane.rightAnchor="50.0" />
-                  <TextField fx:id="miasto" layoutX="209.0" layoutY="235.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="200.0" />
+                  <TextField fx:id="miasto" layoutX="209.0" layoutY="235.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="210.0" />
                   <Text layoutX="59.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="miasto" AnchorPane.leftAnchor="30.0">
                      <font>
                         <Font size="18.0" />
@@ -143,7 +142,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="nr_domu" layoutX="223.0" layoutY="312.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="200.0" />
+                  <TextField fx:id="nr_domu" layoutX="223.0" layoutY="312.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="210.0" />
                   <TextField fx:id="id_parafii" layoutX="748.0" layoutY="259.0" prefHeight="0.0" prefWidth="198.0" AnchorPane.leftAnchor="754.0" AnchorPane.rightAnchor="50.0" />
                   <Text layoutX="578.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id parafii" AnchorPane.leftAnchor="566.0">
                      <font>
@@ -156,6 +155,11 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
+                  <Button layoutX="780.0" layoutY="378.0" mnemonicParsing="false" onAction="#zaawansowaneSzukanie" prefHeight="44.0" prefWidth="179.0" text="Podgląd parafian">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </items>
