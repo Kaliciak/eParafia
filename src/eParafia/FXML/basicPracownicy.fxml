@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.BasicPracownicy">
+   <children>
+      <SplitPane dividerPositions="0.42642140468227424" layoutX="336.0" layoutY="250.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <MenuBar prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <menus>
+                        <Menu fx:id="mainMenu" mnemonicParsing="false" text="Opcje">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#goToMenu" text="Menu główne" />
+                              <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#wyloguj" text="Wyloguj" />
+                           </items>
+                        </Menu>
+                     </menus>
+                  </MenuBar>
+                  <TableView fx:id="basicPracownicy" layoutX="215.0" layoutY="5.0" prefHeight="252.0" prefWidth="998.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                    <columns>
+                      <TableColumn fx:id="id_osobyColumn" prefWidth="45.333328545093536" text="id osoby" />
+                        <TableColumn fx:id="imieColumn" prefWidth="111.46667861938477" text="imię" />
+                        <TableColumn fx:id="nazwiskoColumn" prefWidth="108.26670837402344" text="nazwisko" />
+                        <TableColumn fx:id="rolaColumn" prefWidth="134.93333435058594" text="rola" />
+                      <TableColumn fx:id="id_parafiiColumn" prefWidth="89.33335876464844" text="id parafii" />
+                        <TableColumn fx:id="nazwaColumn" prefWidth="271.7333068847656" text="nazwa parafii" />
+                        <TableColumn fx:id="data_rozpoczeciaColumn" minWidth="0.0" prefWidth="117.60003662109375" text="data rozpoczęcia" />
+                        <TableColumn fx:id="data_zakonczeniaColumn" prefWidth="116.79998779296875" text="data zakończenia" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Text layoutX="506.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data rozpoczęcia od" AnchorPane.leftAnchor="500.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="763.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data rozpoczęcia do" AnchorPane.leftAnchor="760.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <DatePicker fx:id="data_rozpoczecia_od" layoutX="476.0" layoutY="112.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="480.0" />
+                  <DatePicker fx:id="data_rozpoczecia_do" layoutX="747.0" layoutY="112.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="750.0" />
+                  <Text layoutX="510.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data zakończenia od" AnchorPane.leftAnchor="500.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="748.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data zakończenia do" AnchorPane.leftAnchor="760.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <DatePicker fx:id="data_zakonczenia_do" layoutX="753.0" layoutY="197.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="750.0" />
+                  <DatePicker fx:id="data_zakonczenia_od" layoutX="480.0" layoutY="196.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="480.0" />
+                  <Text layoutX="71.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id parafii" AnchorPane.leftAnchor="75.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="50.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id pracownika" AnchorPane.leftAnchor="75.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="id_parafii" layoutX="202.0" layoutY="85.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="195.0" />
+                  <TextField fx:id="id_osoby" layoutX="197.0" layoutY="139.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="195.0" />
+                  <Button layoutX="417.0" layoutY="275.0" mnemonicParsing="false" onAction="#wyszukajPracownika" prefHeight="32.0" prefWidth="134.0" text="Wyszukaj">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="101.0" layoutY="257.0" mnemonicParsing="false" onAction="#edytujPracownika" prefHeight="44.0" prefWidth="199.0" text="Dodaj pracownika">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Text layoutX="-5.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parametry wyszukiwania pracownika" textAlignment="CENTER" wrappingWidth="1016.2699584960938" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="48.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="rola" AnchorPane.leftAnchor="75.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="rola" layoutX="196.0" layoutY="195.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="195.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

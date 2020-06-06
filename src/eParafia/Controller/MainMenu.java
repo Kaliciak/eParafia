@@ -48,6 +48,14 @@ public class MainMenu {
             showErrorWindow(e);
         }
     }
+    @FXML
+    void goToPracownicy(ActionEvent event){
+        try {
+            replaceSceneContent("FXML/basicPracownicy.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
     //MENU
 
     @FXML
