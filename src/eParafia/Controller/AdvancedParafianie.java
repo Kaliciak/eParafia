@@ -159,7 +159,8 @@ public class AdvancedParafianie {
                     "p.id_matki_chrzestnej AS \"id_matki_chrzestnej\"\n" +
                     "\tFROM parafianie p LEFT JOIN adresy a ON p.id_adresu=a.id_adresu\n" +
                     "\tLEFT JOIN historia_parafian hp ON p.id_osoby=hp.id_osoby\n" +
-                    "\tWHERE hp.data_odejscia IS NULL";
+                    "\tWHERE hp.data_odejscia IS NULL" +
+                    " ORDER BY p.id_osoby";
 
             wyszukaniParafianie=stmt.executeQuery(query);;
         }
