@@ -22,17 +22,17 @@
             </Menu>
          </menus>
       </MenuBar>
-      <Text fx:id="sakrName" layoutX="14.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sakrament: " wrappingWidth="350.0800399780274">
+      <Text fx:id="sakrName" layoutX="14.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sakrament: " wrappingWidth="502.746696472168">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text fx:id="dataName" layoutX="14.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data: " wrappingWidth="350.0800399780274">
+      <Text fx:id="dataName" layoutX="14.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data: " wrappingWidth="489.41335296630865">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text fx:id="parafiaName" layoutX="14.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parafia:" wrappingWidth="340.74672698974615">
+      <Text fx:id="parafiaName" layoutX="14.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parafia:" wrappingWidth="340.74672698974615">
          <font>
             <Font size="24.0" />
          </font>
@@ -51,19 +51,19 @@
          </font>
       </Text>
       <Button layoutX="14.0" layoutY="454.0" mnemonicParsing="false" onAction="#add" prefHeight="58.0" prefWidth="298.0" text="Dodaj uczestnika" />
-      <Button layoutX="664.0" layoutY="88.0" mnemonicParsing="false" onAction="#edit" prefHeight="58.0" prefWidth="161.0" text="Edytuj dane" />
+      <Button layoutX="824.0" layoutY="88.0" mnemonicParsing="false" onAction="#edit" prefHeight="58.0" prefWidth="161.0" text="Edytuj dane" />
       <Button layoutX="626.0" layoutY="454.0" mnemonicParsing="false" onAction="#returnToSakramenty" prefHeight="58.0" prefWidth="298.0" text="Wróć do wszystkich sakramentów" />
-      <Text layoutX="373.0" layoutY="60.0" onDragDetected="#add" strokeType="OUTSIDE" strokeWidth="0.0" text="Dane szafarza:" wrappingWidth="191.4133682250977">
+      <Text layoutX="522.0" layoutY="59.0" onDragDetected="#add" strokeType="OUTSIDE" strokeWidth="0.0" text="Dane szafarza:" wrappingWidth="191.4133682250977">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text fx:id="szafarzName" layoutX="373.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię:" wrappingWidth="291.4133682250977">
+      <Text fx:id="szafarzName" layoutX="522.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię:" wrappingWidth="291.4133682250977">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text fx:id="szafarzSurname" layoutX="373.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko:" wrappingWidth="273.4134597778321">
+      <Text fx:id="szafarzSurname" layoutX="522.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko:" wrappingWidth="273.4134597778321">
          <font>
             <Font size="24.0" />
          </font>

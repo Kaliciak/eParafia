@@ -124,11 +124,12 @@ public class Sakramenty {
             try{
                 Statement st = connection.createStatement();
                 st.executeUpdate(query);
-                insertData();
             } catch (Exception e) {
                 showErrorWindow(e);
             }
         }
+        insertData();
+        table.refresh();
     }
 
     @FXML
