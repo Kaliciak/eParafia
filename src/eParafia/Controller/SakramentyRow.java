@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.Date;
 
+
 public class SakramentyRow{
     SimpleIntegerProperty id;
     Date data;
@@ -21,7 +22,14 @@ public class SakramentyRow{
         this.parafiaName = new SimpleStringProperty(parafiaName);
         this.id_szafarza = new SimpleIntegerProperty(id_szafarza);
     }
-
+    public SakramentyRow() {
+        id=new SimpleIntegerProperty(-1);
+        data=new Date(0);
+        sakrament=new SimpleStringProperty();
+        parafia=new SimpleIntegerProperty(-1);
+        parafiaName=new SimpleStringProperty();
+        id_szafarza=new SimpleIntegerProperty(-1);
+    }
     public int getId() {
         return id.get();
     }

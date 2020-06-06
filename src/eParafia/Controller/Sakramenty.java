@@ -6,17 +6,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
+import javax.swing.plaf.nimbus.State;
+import java.awt.Button;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Optional;
 
 import static eParafia.Controller.Dane.*;
 
@@ -50,7 +53,25 @@ public class Sakramenty {
             );
     @FXML
     private ComboBox<String> sakrType;
-    public class ShortParafia {
+    public static class ShortParafia {
+        static public ArrayList<ShortParafia> getParafie() {
+            ArrayList<ShortParafia> out=new ArrayList<>();
+            try {
+                Statement stmt = connection.createStatement();
+                String query=
+                        "select id_parafii,  nazwa|| ', ' || miasto || ', ' || ulica ||' '|| nr_domu as \"nazwa\" from parafie  left outer join adresy using(id_adresu);";
+                ResultSet rs=stmt.executeQuery(query);
+
+                while (rs.next()){
+                    out.add(new ShortParafia(rs.getInt("id_parafii"), rs.getString("nazwa")));
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                System.out.println("Nie powiodło się");
+            }
+            return out;
+        }
         SimpleIntegerProperty id;
         SimpleStringProperty nazwa;
         ShortParafia(int id, String nazwa) {
@@ -97,16 +118,37 @@ public class Sakramenty {
 
     @FXML
     void addSakr(javafx.event.ActionEvent event) {
-
+        SakramentyRow ret=SakramentAdd.getSakramentDataFromUser();
+        if(ret!=null) {
+            String query ="insert into sakramenty(sakrament,parafia,data,id_szafarza) values ('"+ret.getSakrament()+"', "+ret.getParafia()+", '"+new Timestamp(ret.getData().getTime()).toString()+"', "+ (ret.getId_szafarza()>0 ? Integer.toString(ret.getId_szafarza()) : "null")+")";
+            try{
+                Statement st = connection.createStatement();
+                st.executeUpdate(query);
+                insertData();
+            } catch (Exception e) {
+                showErrorWindow(e);
+            }
+        }
     }
 
     @FXML
     void delete(javafx.event.ActionEvent event) {
-
+        delete_sakrament(table.getSelectionModel().getSelectedItem().getId());
+        insertData();
     }
 
     @FXML
     void show(javafx.event.ActionEvent event) {
+        if (table.getSelectionModel().getSelectedItem()==null) return;
+        SakramentView.currentSakrament=table.getSelectionModel().getSelectedItem();
+        try {
+            replaceSceneContent("FXML/sakramentData.fxml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void showm(MouseEvent event) {
         if (table.getSelectionModel().getSelectedItem()==null) return;
         SakramentView.currentSakrament=table.getSelectionModel().getSelectedItem();
         try {
@@ -123,6 +165,25 @@ public class Sakramenty {
         parafia.setValue(null);
         sakrType.setValue(null);
     }
+    static public boolean delete_sakrament(int id) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Usunięcie");
+        alert.setContentText("Czy na pewno chcesz usunąć ten sakrament?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get()==ButtonType.OK) {
+            String query = "delete from sakramenty where id_sakramentu="+id;
+            try {
+                Statement st = connection.createStatement();
+                st.executeUpdate(query);
+                return true;
+            } catch (Exception e) {
+                showErrorWindow(e);
+                return false;
+            }
+        }
+        return false;
+    }
+
     ObservableList<SakramentyRow> sakramentyRows= FXCollections.observableArrayList();
     void insertData() {
         sakramentyRows.clear();
@@ -185,20 +246,7 @@ public class Sakramenty {
         parafiaColumn.setCellValueFactory(new PropertyValueFactory<>("parafiaName"));
         insertData();
         parafiaOptions.add(null);
-        try {
-            Statement stmt = connection.createStatement();
-            String query=
-                    "select id_parafii,  nazwa|| ', ' || miasto || ', ' || ulica ||' '|| nr_domu as \"nazwa\" from parafie  left outer join adresy using(id_adresu);";
-            ResultSet rs=stmt.executeQuery(query);
-
-            while (rs.next()){
-                parafiaOptions.add(new ShortParafia(rs.getInt("id_parafii"), rs.getString("nazwa")));
-            }
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            System.out.println("Nie powiodło się");
-        }
+        parafiaOptions.addAll(ShortParafia.getParafie());
         sakrType.setItems(sakrTypeOptions);
         parafia.setItems(parafiaOptions);
     }

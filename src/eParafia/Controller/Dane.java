@@ -42,4 +42,12 @@ public class Dane {
         alert.setResizable(true);
         alert.showAndWait();
     }
+    public static void showErrorWindow(String e){
+        Alert alert=new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(e);
+        alert.setTitle("BŁĄD");
+        alert.setHeaderText("Wystapił błąd");
+        alert.setResizable(true);
+        alert.showAndWait();
+    }
 }

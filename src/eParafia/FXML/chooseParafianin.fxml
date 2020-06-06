@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="table" layoutX="14.0" layoutY="14.0" onMouseClicked="#onChoose" prefHeight="200.0" prefWidth="375.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="39.33334255218506" text="ID" />
+          <TableColumn fx:id="nameColumn" prefWidth="93.33330917358398" text="Imię" />
+            <TableColumn fx:id="secondNameColumn" prefWidth="86.66668701171875" text="Drugie imię" />
+            <TableColumn fx:id="surnameColumn" prefWidth="154.6667022705078" text="Nazwisko" />
+        </columns>
+      </TableView>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="22.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="22.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="22.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Urodzony przed:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="22.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Urodzony do:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nameText" layoutX="202.0" layoutY="225.0" onAction="#update" />
+      <TextField fx:id="surnameText" layoutX="202.0" layoutY="252.0" onAction="#update" />
+      <DatePicker fx:id="dateTo" layoutX="202.0" layoutY="279.0" onAction="#update" />
+      <DatePicker fx:id="dateSince" layoutX="202.0" layoutY="306.0" onAction="#update" />
+   </children>
+</AnchorPane>

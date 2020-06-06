@@ -28,7 +28,6 @@ public class ChooseParafianie {
     static public ArrayList<FullParafianieEntity> ret = new ArrayList<>();
     ObservableList<FullParafianieEntity> left= FXCollections.observableArrayList();
     ObservableList<FullParafianieEntity> right = FXCollections.observableArrayList();
-    boolean status;
     static public ArrayList<FullParafianieEntity> selectParafianie(String query) {
         try {
             ChooseParafianie.all=FullParafianieEntity.takeAllFromQuery(query);

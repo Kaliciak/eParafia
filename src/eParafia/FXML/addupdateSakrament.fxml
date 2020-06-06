@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="178.0" prefWidth="311.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="21.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sakrament:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="21.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="szafarzName" layoutX="21.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Szafarz:" wrappingWidth="279.9501953125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="21.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parafia:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="18.0" layoutY="132.0" mnemonicParsing="false" onAction="#choose_szafarz" prefHeight="25.0" prefWidth="121.0" text="Wybierz szafarza" />
+      <ComboBox fx:id="sakrType" layoutX="121.0" layoutY="18.0" prefWidth="150.0" />
+      <DatePicker fx:id="date" layoutX="121.0" layoutY="45.0" />
+      <ComboBox fx:id="parafia" layoutX="121.0" layoutY="72.0" prefWidth="150.0" />
+      <Button layoutX="173.0" layoutY="132.0" mnemonicParsing="false" onAction="#confirm" prefHeight="25.0" prefWidth="121.0" text="Potwierdź" />
+   </children>
+</AnchorPane>

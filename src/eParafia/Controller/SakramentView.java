@@ -23,7 +23,9 @@ import javax.xml.crypto.Data;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import static eParafia.Controller.Dane.*;
 
@@ -148,27 +150,86 @@ public class SakramentView {
 
     @FXML
     void add(ActionEvent event) {
-        ChooseParafianie.selectParafianie("select * from parafianie").stream().forEach(pr ->System.out.println(pr.getImie()));
+        ArrayList<FullParafianieEntity> toAdd=ChooseParafianie.selectParafianie("select * from parafianie p where not exists(select * from sakramenty_osoby s where typ_uczestnictwa='UCZESTNIK' and s.id_osoby=p.id_osoby and id_sakramentu = "+currentSakrament.getId()+")");
+        String query="insert into sakramenty_osoby values ";
+        if(toAdd.size()==0) return;
+        query+=toAdd.stream().map(pp ->"("+currentSakrament.getId()+", "+pp.getId_osoby()+", 'UCZESTNIK' )").collect(Collectors.joining(", "));
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(query);
+        } catch (Exception e) {
+            showErrorWindow(e);
+        }
+        sakramentPersons.clear();
+        initialize();
     }
     @FXML
     void add_gosc(ActionEvent event) {
-
+        ArrayList<FullParafianieEntity> toAdd=ChooseParafianie.selectParafianie("select * from parafianie p where not exists(select * from sakramenty_osoby s where typ_uczestnictwa='GOŚĆ' and s.id_osoby=p.id_osoby and id_sakramentu = "+currentSakrament.getId()+")");
+        String query="insert into sakramenty_osoby values ";
+        if(toAdd.size()==0) return;
+        query+=toAdd.stream().map(pp ->"("+currentSakrament.getId()+", "+pp.getId_osoby()+", 'GOŚĆ' )").collect(Collectors.joining(", "));
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(query);
+        } catch (Exception e) {
+            showErrorWindow(e);
+        }
+        sakramentPersons.clear();
+        initialize();
+    }
+    @FXML
+    void add_swiadek(ActionEvent event) {
+        ArrayList<FullParafianieEntity> toAdd=ChooseParafianie.selectParafianie("select * from parafianie p where not exists(select * from sakramenty_osoby s where typ_uczestnictwa='ŚWIADEK' and s.id_osoby=p.id_osoby and id_sakramentu = "+currentSakrament.getId()+")");
+        String query="insert into sakramenty_osoby values ";
+        if(toAdd.size()==0) return;
+        query+=toAdd.stream().map(pp ->"("+currentSakrament.getId()+", "+pp.getId_osoby()+", 'ŚWIADEK' )").collect(Collectors.joining(", "));
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(query);
+        } catch (Exception e) {
+            showErrorWindow(e);
+        }
+        sakramentPersons.clear();
+        initialize();
     }
 
     @FXML
-    void add_swiadek(ActionEvent event) {
-
+    void delete_part(ActionEvent event) {
+        ArrayList<FullParafianieEntity> toDelete = ChooseParafianie.selectParafianie("select * from parafianie p where exists(select * from sakramenty_osoby s where p.id_osoby=s.id_osoby and id_sakramentu="+currentSakrament.getId()+")");
+        if(toDelete.size()==0) return;
+        String query ="delete from sakramenty_osoby where id_sakramentu="+currentSakrament.getId()+"and id_osoby in (";
+        query+=toDelete.stream().map(pp-> Integer.toString(pp.getId_osoby())).collect(Collectors.joining(", "));
+        query+=")";
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(query);
+        } catch (Exception e) {
+            showErrorWindow(e);
+        }
+        sakramentPersons.clear();
+        initialize();
     }
 
     @FXML
     void delete(ActionEvent event) {
-
+        if(Sakramenty.delete_sakrament(currentSakrament.getId())) returnToSakramenty(null);
     }
     @FXML
     void edit(ActionEvent event) {
-
+        SakramentyRow ret = SakramentAdd.getSakramentDataFromUser(currentSakrament, szafarzName.getText().substring(5) + szafarzSurname.getText().substring(9));
+        if (ret != null) {
+            String query = "update sakramenty set (parafia,data,id_szafarza)=("+ret.getParafia()+", '"+new Timestamp(ret.getData().getTime()).toString()+"', "+ (ret.getId_szafarza()>0 ? Integer.toString(ret.getId_szafarza()) : "null")+") where id_sakramentu= "+ret.getId();
+            try {
+                Statement stmt = connection.createStatement();
+                stmt.executeUpdate(query);
+                currentSakrament=ret;
+                initialize();
+            } catch (Exception e) {
+                showErrorWindow(e);
+            }
+        }
     }
-
     @FXML
     void returnToSakramenty(ActionEvent event) {
         try{
@@ -195,6 +256,7 @@ public class SakramentView {
             catch (Exception e) {
                 e.printStackTrace();
             }
+            sakramentPersons.clear();
             try {
                 Statement stmt = connection.createStatement();
                 String query = "select id_osoby, imie, nazwisko, typ_uczestnictwa from sakramenty_osoby left outer join parafianie using(id_osoby) where id_sakramentu="+currentSakrament.getId();

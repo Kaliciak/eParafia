@@ -14,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.Sakramenty">
    <children>
-      <TableView fx:id="table" layoutX="14.0" layoutY="50.0" prefHeight="200.0" prefWidth="577.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+      <TableView fx:id="table" layoutX="14.0" layoutY="50.0" onMouseClicked="#showm" prefHeight="200.0" prefWidth="577.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="dataColumn" prefWidth="148.6666488647461" text="Data" />
