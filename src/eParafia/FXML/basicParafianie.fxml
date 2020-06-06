@@ -46,6 +46,7 @@
                               <Menu mnemonicParsing="false" text="Historia">
                                 <items>
                                   <MenuItem mnemonicParsing="false" onAction="#showHistoriaPracy" text="Pracy" />
+                                    <MenuItem mnemonicParsing="false" onAction="#showHistoriaParafi" text="Parafii" />
                                 </items>
                               </Menu>
                           </items>

@@ -407,6 +407,18 @@ public class AdvancedParafianie {
     }
 
     @FXML
+    void showHistoriaParafi(ActionEvent event) {
+        HistoriaParafian.idPar=basicParafie.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
+        HistoriaParafian.imiePar=basicParafie.getSelectionModel().getSelectedItem().imie.getValue();
+        HistoriaParafian.nazwiskoPar=basicParafie.getSelectionModel().getSelectedItem().nazwisko.getValue();
+        try{
+            openSecondStage("FXML/historiaParafian.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
     void initialize() {
         assert basicParafie != null : "fx:id=\"basicParafie\" was not injected: check your FXML file 'advancedParafianie.fxml'.";
         assert id_osobyColumn != null : "fx:id=\"id_osobyColumn\" was not injected: check your FXML file 'advancedParafianie.fxml'.";

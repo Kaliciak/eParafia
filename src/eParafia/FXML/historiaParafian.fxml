@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.HistoriaParafian">
+   <children>
+      <Text layoutX="1.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Historia parafii " textAlignment="CENTER" wrappingWidth="999.4559936523438" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="imie_i_nazwisko" layoutX="-1.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jan Kowalski" textAlignment="CENTER" wrappingWidth="1000.8424377441406" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="id_historyka" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id: 10" textAlignment="CENTER" wrappingWidth="999.4648132324219" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <TableView fx:id="historiaParafian" layoutX="26.0" layoutY="174.0" prefHeight="600.0" prefWidth="1052.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+         <columns>
+            <TableColumn fx:id="id_pariafiiColumn" prefWidth="51.466638684272766" text="id parafii" />
+            <TableColumn fx:id="nazwaColumn" prefWidth="227.73331451416016" text="nazwa" />
+            <TableColumn fx:id="miastoColumn" minWidth="0.0" prefWidth="151.46670532226562" text="miasto" />
+            <TableColumn fx:id="ulicaColumn" minWidth="0.0" prefWidth="123.73333740234375" text="ulica" />
+            <TableColumn fx:id="nr_domuColumn" prefWidth="70.6666259765625" text="nr domu" />
+            <TableColumn fx:id="data_przybyciaColumn" prefWidth="145.0665283203125" text="data przybycia" />
+            <TableColumn fx:id="data_odejsciaColumn" prefWidth="128.53338623046875" text="data odejścia" />
+            <TableColumn fx:id="apostazjaColumn" prefWidth="103.9998779296875" text="apostazja" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
