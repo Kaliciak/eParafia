@@ -32,7 +32,12 @@
                      <contextMenu>
                         <ContextMenu>
                           <items>
-                            <MenuItem mnemonicParsing="false" onAction="#showPrafianie" text="Wyświetl parafian" />
+                              <Menu mnemonicParsing="false" text="Wyświetl">
+                                 <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#showPrafianie" text="Parafian" />
+                                    <MenuItem mnemonicParsing="false" onAction="#showPracownicy" text="Pracowników" />
+                                 </items>
+                              </Menu>
                               <MenuItem mnemonicParsing="false" onAction="#wklepParafie" text="Edytuj parafię" />
                           </items>
                         </ContextMenu>

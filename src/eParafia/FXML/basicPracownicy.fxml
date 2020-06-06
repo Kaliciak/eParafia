@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -41,6 +42,19 @@
                         <TableColumn fx:id="data_rozpoczeciaColumn" minWidth="0.0" prefWidth="117.60003662109375" text="data rozpoczęcia" />
                         <TableColumn fx:id="data_zakonczeniaColumn" prefWidth="116.79998779296875" text="data zakończenia" />
                     </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#endPraca" text="Zakoncz pracę" />
+                              <Menu mnemonicParsing="false" text="Wyświetl">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#showPracownik" text="Dane pracownika" />
+                                    <MenuItem mnemonicParsing="false" onAction="#showParafia" text="Dane parafii" />
+                                </items>
+                              </Menu>
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
                   </TableView>
                </children>
             </AnchorPane>

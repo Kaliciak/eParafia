@@ -278,6 +278,17 @@ public class BasicParafianie {
     }
 
     @FXML
+    void showHistoriaPracy(){
+        BasicPracownicy.osoba=basicParafie.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
+        czyPrep=false;
+        try {
+            replaceSceneContent("FXML/basicPracownicy.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
     void initialize() {
         assert basicParafie != null : "fx:id=\"basicParafie\" was not injected: check your FXML file 'basicParafianie.fxml'.";
         assert id_osobyColumn != null : "fx:id=\"id_osobyColumn\" was not injected: check your FXML file 'basicParafianie.fxml'.";
@@ -288,8 +299,7 @@ public class BasicParafianie {
         assert mainMenu != null : "fx:id=\"mainMenu\" was not injected: check your FXML file 'basicParafianie.fxml'.";
         assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'basicParafianie.fxml'.";
 
-
-        if(czyPrep){
+        if (czyPrep) {
             prepParafianie();
         }
         else {

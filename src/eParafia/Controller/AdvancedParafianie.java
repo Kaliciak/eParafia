@@ -396,6 +396,17 @@ public class AdvancedParafianie {
     }
 
     @FXML
+    void showHistoriaPracy(){
+        BasicPracownicy.osoba=basicParafie.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
+        czyPrep=false;
+        try {
+            replaceSceneContent("FXML/basicPracownicy.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
     void initialize() {
         assert basicParafie != null : "fx:id=\"basicParafie\" was not injected: check your FXML file 'advancedParafianie.fxml'.";
         assert id_osobyColumn != null : "fx:id=\"id_osobyColumn\" was not injected: check your FXML file 'advancedParafianie.fxml'.";

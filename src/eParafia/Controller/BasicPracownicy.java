@@ -27,7 +27,8 @@ public class BasicPracownicy {
     public static ResultSet wyszukaniPracownicy;
     boolean isWhere;
     String query;
-    static boolean czyPrep=true;
+    static String osoba=null;
+    static String parafia=null;
 
     @FXML
     private ResourceBundle resources;
@@ -91,7 +92,31 @@ public class BasicPracownicy {
 
     @FXML
     void edytujPracownika(ActionEvent event) {
+        try {
+            if(id_osoby.getText()==null || id_osoby.getText().isEmpty()){
+                throw new Exception("Należy podać id pracownika");
+            }
+            if(id_parafii.getText()==null || id_parafii.getText().isEmpty()){
+                throw new Exception("Należy podać id parafii");
+            }
+            if(rola.getText()==null || rola.getText().isEmpty()){
+                throw new Exception("Należy podać rolę pracownika");
+            }
 
+            query="INSERT INTO pracownicy(id_osoby, id_parafii, rola) VALUES ( ";
+            query+="'"+id_osoby.getText()+"'";
+            query+=",";
+            query+="'"+id_parafii.getText()+"'";
+            query+=",";
+            query+="'"+rola.getText()+"')";
+
+            Statement stmt=connection.createStatement();
+            stmt.executeUpdate(query);
+
+            wyszukajPracownika(event);
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
     }
 
     public void putWhere(){
@@ -101,6 +126,18 @@ public class BasicPracownicy {
         }
         else {
             query+=" AND ";
+        }
+    }
+
+    @FXML
+    void endPraca(){
+        query="UPDATE pracownicy SET data_zakonczenia=now() WHERE id_osoby='";
+        query+=basicPracownicy.getSelectionModel().getSelectedItem().id_osoby.getValue()+"'";
+        try {
+            Statement stmt=connection.createStatement();
+            stmt.executeUpdate(query);
+        }catch (Exception e){
+            showErrorWindow(e);
         }
     }
 
@@ -260,6 +297,58 @@ public class BasicPracownicy {
     }
 
     @FXML
+    void showParafia(ActionEvent event) {
+        try {
+            Statement stmt = connection.createStatement();
+
+            String idPar=basicPracownicy.getSelectionModel().getSelectedItem().id_parafii.getValue().toString();
+
+            query="SELECT \n" +
+                    "p.id_parafii AS \"id_parafii\",\n" +
+                    "p.nazwa AS \"nazwa\",\n" +
+                    "z.nazwa AS \"zakon\",\n" +
+                    "a.miasto AS \"miasto\",\n" +
+                    "a.ulica AS \"ulica\",\n" +
+                    "a.nr_domu AS \"nr_domu\"\n" +
+                    "\tFROM parafie p LEFT JOIN adresy a ON p.id_adresu=a.id_adresu\n" +
+                    "\tLEFT JOIN zakony z ON p.zakon=z.id_zakonu" +
+                    " WHERE p.id_parafii='" + idPar + "'";
+
+            BasicParafie.wyszukaneParafie=stmt.executeQuery(query);
+            BasicParafie.czyPrep=false;
+            replaceSceneContent("FXML/basicParafie.fxml");
+        }
+        catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
+    void showPracownik(ActionEvent event) {
+        try {
+            Statement stmt = connection.createStatement();
+
+            String idOS=basicPracownicy.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
+
+            query="SELECT \n" +
+                    "p.id_osoby AS \"id_osoby\",\n" +
+                    "p.imie AS \"imie\",\n" +
+                    "p.nazwisko AS \"nazwisko\",\n" +
+                    "p.data_narodzin AS \"data_narodzin\",\n" +
+                    "p.data_zgonu AS \"data_zgonu\"\n" +
+                    "\tFROM parafianie p" +
+                    "\tWHERE p.id_osoby= '"+ idOS + "'";
+
+            BasicParafianie.wyszukaniParafianie=stmt.executeQuery(query);
+            BasicParafianie.czyPrep=false;
+            replaceSceneContent("FXML/basicParafianie.fxml");
+        }
+        catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
     void initialize() {
         assert mainMenu != null : "fx:id=\"mainMenu\" was not injected: check your FXML file 'basicPracownicy.fxml'.";
         assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'basicPracownicy.fxml'.";
@@ -280,14 +369,20 @@ public class BasicPracownicy {
         assert id_osoby != null : "fx:id=\"id_osoby\" was not injected: check your FXML file 'basicPracownicy.fxml'.";
         assert rola != null : "fx:id=\"rola\" was not injected: check your FXML file 'basicPracownicy.fxml'.";
 
-
-        if(czyPrep){
-            prepPracowincy();
+        if(osoba!=null){
+            id_osoby.setText(osoba);
+            wyszukajPracownika(new ActionEvent());
+            osoba=null;
+        }
+        else if(parafia!=null){
+            id_parafii.setText(parafia);
+            wyszukajPracownika(new ActionEvent());
+            parafia=null;
         }
         else {
-            czyPrep=true;
+            prepPracowincy();
+            insertPracownicy();
         }
-        insertPracownicy();
     }
 
     //MENU

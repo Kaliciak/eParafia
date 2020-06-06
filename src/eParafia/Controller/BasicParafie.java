@@ -22,6 +22,7 @@ public class BasicParafie {
     public static ResultSet wyszukaneParafie;
     boolean isWhere;
     String query;
+    static boolean czyPrep=true;
 
     @FXML
     private ResourceBundle resources;
@@ -416,6 +417,17 @@ public class BasicParafie {
         zakon.getSelectionModel().select(basicParafie.getSelectionModel().getSelectedItem().zakon.getValue());
     }
 
+
+    @FXML
+    void showPracownicy(ActionEvent event) {
+        BasicPracownicy.parafia=basicParafie.getSelectionModel().getSelectedItem().id_parafii.getValue().toString();
+        try {
+            replaceSceneContent("FXML/basicPracownicy.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
     @FXML
     void initialize() {
         assert basicParafie != null : "fx:id=\"basicParafie\" was not injected: check your FXML file 'basicParafie.fxml'.";
@@ -428,9 +440,15 @@ public class BasicParafie {
         assert mainMenu != null : "fx:id=\"mainMenu\" was not injected: check your FXML file 'basicParafie.fxml'.";
         assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'basicParafie.fxml'.";
 
-        prepParafie();
-        insertParafie();
         wypelnijCombo();
+
+        if(czyPrep){
+            prepParafie();
+        }
+        else {
+            czyPrep=true;
+        }
+        insertParafie();
     }
 
     //MENU

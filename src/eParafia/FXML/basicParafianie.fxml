@@ -43,6 +43,11 @@
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#showSzczegoly" text="Szczegóły" />
                               <MenuItem mnemonicParsing="false" onAction="#editParafianin" text="Edytuj" />
+                              <Menu mnemonicParsing="false" text="Historia">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#showHistoriaPracy" text="Pracy" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
