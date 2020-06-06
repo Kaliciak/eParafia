@@ -87,7 +87,8 @@ public class BasicParafie {
                             "a.ulica AS \"ulica\",\n" +
                             "a.nr_domu AS \"nr_domu\"\n" +
                             "\tFROM parafie p LEFT JOIN adresy a ON p.id_adresu=a.id_adresu\n" +
-                            "\tLEFT JOIN zakony z ON p.zakon=z.id_zakonu";
+                            "\tLEFT JOIN zakony z ON p.zakon=z.id_zakonu" +
+                            " ORDER BY p.id_parafii";
 
             Statement stmt = connection.createStatement();
             wyszukaneParafie=stmt.executeQuery(query);

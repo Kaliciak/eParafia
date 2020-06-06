@@ -225,7 +225,7 @@ public class BasicPracownicy {
                         "EXTRACT(YEAR FROM pr.data_zakonczenia)='"+dZakDo.getYear()+"'" +
                         ")" +
                         " OR (" +
-                        "pr.data_zakonczenia>'" + dZakDo + "'))";
+                        "pr.data_zakonczenia<'" + dZakDo + "'))";
             }
             wyszukaniPracownicy=stmt.executeQuery(query);
             insertPracownicy();

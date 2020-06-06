@@ -56,6 +56,14 @@ public class MainMenu {
             showErrorWindow(e);
         }
     }
+    @FXML
+    void goToWydarzenia(ActionEvent event){
+        try {
+            replaceSceneContent("FXML/basicWydarzenia.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
     //MENU
 
     @FXML

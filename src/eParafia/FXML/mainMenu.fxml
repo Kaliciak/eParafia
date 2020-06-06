@@ -43,5 +43,10 @@
             <Font size="20.0" />
          </font>
       </Button>
+      <Button layoutX="370.0" layoutY="251.0" mnemonicParsing="false" onAction="#goToWydarzenia" prefHeight="70.0" prefWidth="200.0" text="Wydarzenia">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
