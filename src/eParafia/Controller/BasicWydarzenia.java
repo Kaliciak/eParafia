@@ -208,7 +208,7 @@ public class BasicWydarzenia {
                         "EXTRACT(YEAR FROM data_zakonczenia)='"+dZakDo.getYear()+"'" +
                         ")" +
                         " OR (" +
-                        "data_zakonczenia<" + dZakDo + "'))";
+                        "data_zakonczenia<'" + dZakDo + "'))";
             }
             query+=" ORDER BY data_rozpoczecia DESC";
             wyszukaneWydarzenia=stmt.executeQuery(query);
@@ -228,7 +228,7 @@ public class BasicWydarzenia {
                     "\tORDER BY data_rozpoczecia DESC;";
 
 
-            wyszukaneWydarzenia=stmt.executeQuery(query);;
+            wyszukaneWydarzenia=stmt.executeQuery(query);
         }
         catch (Exception e){
             showErrorWindow(e);

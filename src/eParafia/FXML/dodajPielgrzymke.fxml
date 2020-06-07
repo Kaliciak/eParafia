@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.DodajPielgrzymke">
+   <children>
+      <SplitPane dividerPositions="0.31438127090301005" layoutX="294.0" layoutY="155.0" orientation="VERTICAL" prefHeight="755.0" prefWidth="1294.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TableView fx:id="basicWydarzenia" layoutX="-172.0" layoutY="-42.0" prefHeight="185.6" prefWidth="998.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="id_wydarzeniaColumn" prefWidth="63.20002394914627" text="id wydarzenia" />
+                        <TableColumn fx:id="data_rozpoczeciaColumn" prefWidth="227.99994659423828" text="data rozpoczęcia" />
+                        <TableColumn fx:id="data_zakonczeniaColumn" minWidth="0.0" prefWidth="213.33331298828125" text="data zakończenia" />
+                        <TableColumn fx:id="miejsce_startuColumn" prefWidth="202.93328857421875" text="miejsce startu" />
+                        <TableColumn fx:id="celColumn" prefWidth="169.066650390625" text="cel" />
+                        <TableColumn fx:id="kosztColumn" prefWidth="117.60009765625" text="koszt" />
+                     </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#edytujPielgrzymke" text="Edytuj" />
+                              <Menu mnemonicParsing="false" text="Wyświetl">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#osobyUczestniczace" text="Osoby uczestniczące" />
+                                    <MenuItem mnemonicParsing="false" onAction="#parafieOrganizujace" text="Parafie organizujące" />
+                                 </items>
+                              </Menu>
+                           </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Button layoutX="321.0" layoutY="318.0" mnemonicParsing="false" onAction="#zmienWydarzenie" prefHeight="44.0" prefWidth="212.0" text="Dodaj/Modyfiuj">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Text layoutX="101.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="id wydarzenia (obowiązkowe)" AnchorPane.leftAnchor="101.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="id_wydarzenia" layoutX="117.0" layoutY="132.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="120.0" />
+                  <Text layoutX="248.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodawanie i edycja pielgrzymek">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="578.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="koszt">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="koszt" layoutX="403.0" layoutY="128.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="500.0" />
+                  <Text layoutX="588.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="cel">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="cel" layoutX="368.0" layoutY="234.0" prefHeight="26.0" prefWidth="198.0" AnchorPane.leftAnchor="500.0" />
+                  <Text layoutX="158.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="miejsce startu">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="miejsce_startu" layoutX="123.0" layoutY="236.0" prefHeight="26.0" prefWidth="198.0" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

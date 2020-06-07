@@ -48,5 +48,10 @@
             <Font size="20.0" />
          </font>
       </Button>
+      <Button layoutX="370.0" layoutY="366.0" mnemonicParsing="false" onAction="#goToPielgrzymki" prefHeight="70.0" prefWidth="200.0" text="Pielgrzymki">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

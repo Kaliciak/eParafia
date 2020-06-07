@@ -10,7 +10,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.DodajWydarzenie">
    <children>
       <SplitPane dividerPositions="0.31438127090301005" layoutX="284.0" layoutY="145.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -58,6 +57,11 @@
                      </font>
                   </Text>
                   <DatePicker fx:id="data_zakonczenia" layoutX="599.0" layoutY="236.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.rightAnchor="270.0" />
+                  <Text layoutX="291.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodawanie i edycja wydarzeń">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
         </items>
