@@ -420,6 +420,42 @@ public class AdvancedParafianie {
     }
 
     @FXML
+    void przeprowadzka(ActionEvent event) {
+        try {
+            String idOs=basicParafie.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
+            query="UPDATE historia_parafian SET data_odejscia=now() WHERE data_odejscia IS NULL AND  id_osoby='"+idOs+"'";
+            Statement stmt=connection.createStatement();
+            stmt.executeUpdate(query);
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
+    void apostazja(ActionEvent event) {
+        try {
+            String idOs=basicParafie.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
+            query="UPDATE historia_parafian SET data_odejscia=now(), apostazja=true WHERE data_odejscia IS NULL AND id_osoby='"+idOs+"'";
+            Statement stmt=connection.createStatement();
+            stmt.executeUpdate(query);
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
+    void deleteParafianin(ActionEvent event) {
+        try {
+            String idOs=basicParafie.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
+            query="DELETE FROM parafianie WHERE id_osoby='"+idOs+"'";
+            Statement stmt=connection.createStatement();
+            stmt.executeUpdate(query);
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
     void initialize() {
         assert basicParafie != null : "fx:id=\"basicParafie\" was not injected: check your FXML file 'advancedParafianie.fxml'.";
         assert id_osobyColumn != null : "fx:id=\"id_osobyColumn\" was not injected: check your FXML file 'advancedParafianie.fxml'.";

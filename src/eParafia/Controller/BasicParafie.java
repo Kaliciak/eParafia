@@ -450,6 +450,17 @@ public class BasicParafie {
         }
     }
 
+    @FXML
+    void deleteParafia(ActionEvent event) {
+        try {
+            String idPar=basicParafie.getSelectionModel().getSelectedItem().id_parafii.getValue().toString();
+            query="DELETE FROM parafie WHERE id_parafii='"+idPar+"'";
+            Statement stmt=connection.createStatement();
+            stmt.executeUpdate(query);
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
 
     @FXML
     void initialize() {

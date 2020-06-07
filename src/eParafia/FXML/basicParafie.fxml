@@ -40,6 +40,11 @@
                                  </items>
                               </Menu>
                               <MenuItem mnemonicParsing="false" onAction="#wklepParafie" text="Edytuj parafię" />
+                              <Menu mnemonicParsing="false" text="Usuń informacje o parfii">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#deleteParafia" text="Potwierdź" />
+                                 </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>

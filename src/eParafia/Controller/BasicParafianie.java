@@ -347,6 +347,18 @@ public class BasicParafianie {
         }
     }
 
+    @FXML
+    void deleteParafianin(ActionEvent event) {
+        try {
+            String idOs=basicParafie.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
+            query="DELETE FROM parafianie WHERE id_osoby='"+idOs+"'";
+            Statement stmt=connection.createStatement();
+            stmt.executeUpdate(query);
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
 
     @FXML
     void initialize() {

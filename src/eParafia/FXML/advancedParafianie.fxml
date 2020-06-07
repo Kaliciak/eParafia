@@ -48,6 +48,17 @@
                                     <MenuItem mnemonicParsing="false" onAction="#showHistoriaParafi" text="Parafii" />
                                  </items>
                               </Menu>
+                              <Menu mnemonicParsing="false" text="Opuszczenie parafii">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#apostazja" text="Apostazja" />
+                                    <MenuItem mnemonicParsing="false" onAction="#przeprowadzka" text="Przeprowadzka" />
+                                 </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" text="Usuń informacje o osobie">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#deleteParafianin" text="Potwierdź" />
+                                 </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
