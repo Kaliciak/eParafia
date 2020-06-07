@@ -79,7 +79,8 @@ public class BasicParafianie {
                     "nazwisko AS \"nazwisko\",\n" +
                     "data_narodzin AS \"data_narodzin\",\n" +
                     "data_zgonu AS \"data_zgonu\"\n" +
-                    "\tFROM parafianie";
+                    "\tFROM parafianie" +
+                    " ORDER BY id_osoby";
 
 
             wyszukaniParafianie=stmt.executeQuery(query);;
@@ -299,6 +300,53 @@ public class BasicParafianie {
             showErrorWindow(e);
         }
     }
+
+    @FXML
+    void przeprowadzka(ActionEvent event) {
+        try {
+            String idOs=basicParafie.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
+            query="UPDATE historia_parafian SET data_odejscia=now() WHERE data_odejscia IS NULL AND  id_osoby='"+idOs+"'";
+            Statement stmt=connection.createStatement();
+            stmt.executeUpdate(query);
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
+    void apostazja(ActionEvent event) {
+        try {
+            String idOs=basicParafie.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
+            query="UPDATE historia_parafian SET data_odejscia=now(), apostazja=true WHERE data_odejscia IS NULL AND id_osoby='"+idOs+"'";
+            Statement stmt=connection.createStatement();
+            stmt.executeUpdate(query);
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
+    void showWydarzenia(ActionEvent event) {
+        try {
+            String idOs=basicParafie.getSelectionModel().getSelectedItem().id_osoby.getValue().toString();
+            Statement stmt = connection.createStatement();
+
+            query="SELECT *\n" +
+                    "\tFROM WYDARZENIA\n" +
+                    " WHERE id_wydarzenia IN("+
+                    "SELECT id_wydarzenia FROM uczestnicy_wydarzenia WHERE id_osoby='" +
+                    idOs+
+                    "')"+
+                    "ORDER BY data_rozpoczecia DESC";
+
+            BasicWydarzenia.wyszukaneWydarzenia=stmt.executeQuery(query);
+            BasicWydarzenia.czyPrep=false;
+            replaceSceneContent("FXML/basicWydarzenia.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
 
     @FXML
     void initialize() {

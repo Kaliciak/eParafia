@@ -349,6 +349,15 @@ public class BasicPracownicy {
     }
 
     @FXML
+    void zaawansowaneSzukanie(ActionEvent event) {
+        try {
+            openSecondStage("FXML/advancedParafianie.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
     void initialize() {
         assert mainMenu != null : "fx:id=\"mainMenu\" was not injected: check your FXML file 'basicPracownicy.fxml'.";
         assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'basicPracownicy.fxml'.";

@@ -36,6 +36,7 @@
                                  <items>
                                   <MenuItem mnemonicParsing="false" onAction="#showPrafianie" text="Parafian" />
                                     <MenuItem mnemonicParsing="false" onAction="#showPracownicy" text="Pracowników" />
+                                    <MenuItem mnemonicParsing="false" onAction="#showWydarzenia" text="Wydarzenia" />
                                  </items>
                               </Menu>
                               <MenuItem mnemonicParsing="false" onAction="#wklepParafie" text="Edytuj parafię" />

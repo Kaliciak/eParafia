@@ -74,6 +74,15 @@ public class MainMenu {
             showErrorWindow(e);
         }
     }
+
+    @FXML
+    void goToPielgrzymki(ActionEvent event) {
+        try {
+            replaceSceneContent("FXML/basicPielgrzymki.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
     //MENU
 
     @FXML

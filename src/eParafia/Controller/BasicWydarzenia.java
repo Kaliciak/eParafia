@@ -25,6 +25,7 @@ public class BasicWydarzenia {
 
     ObservableList<WydarzeniaRow> wydarzeniaRows= FXCollections.observableArrayList();
     public static ResultSet wyszukaneWydarzenia;
+    public static boolean czyPrep=true;
     boolean isWhere;
     String query;
 
@@ -83,18 +84,48 @@ public class BasicWydarzenia {
     private TextField wydarzenie;
 
     @FXML
+    void dodajUczestnika(ActionEvent event) {
+        try {
+            if(id_wydarzenia_dod.getText()==null || id_wydarzenia_dod.getText().isEmpty()){
+                throw new Exception("Należy podać id wydarzenia");
+            }
+            if(id_osoby.getText()==null || id_osoby.getText().isEmpty()){
+                throw new Exception("Należy podać id osoby");
+            }
+            query="INSERT INTO uczestnicy_wydarzenia (id_wydarzenia, id_osoby) VALUES (";
+            query+="'"+id_wydarzenia_dod.getText()+"','"+id_osoby.getText()+"')";
+            Statement stmt=connection.createStatement();
+            stmt.executeUpdate(query);
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
+    void dodajParafie(ActionEvent event) {
+        try {
+            if(id_wydarzenia_dod.getText()==null || id_wydarzenia_dod.getText().isEmpty()){
+                throw new Exception("Należy podać id wydarzenia");
+            }
+            if(id_parafii.getText()==null || id_parafii.getText().isEmpty()){
+                throw new Exception("Należy podać id parafii");
+            }
+            query="INSERT INTO parafie_wydarzenia (id_wydarzenia, id_parafii) VALUES (";
+            query+="'"+id_wydarzenia_dod.getText()+"','"+id_parafii.getText()+"')";
+            Statement stmt=connection.createStatement();
+            stmt.executeUpdate(query);
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
     void dodajWydarzenie(ActionEvent event) {
-
-    }
-
-    @FXML
-    void wyszukajParafie(ActionEvent event) {
-
-    }
-
-    @FXML
-    void wyszukajUczestnikow(ActionEvent event) {
-
+        try {
+            openSecondStage("FXML/dodajWydarzenie.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
     }
 
     public void putWhere(){
@@ -177,8 +208,9 @@ public class BasicWydarzenia {
                         "EXTRACT(YEAR FROM data_zakonczenia)='"+dZakDo.getYear()+"'" +
                         ")" +
                         " OR (" +
-                        "data_zakonczenia<" + dZakDo + "'))";
+                        "data_zakonczenia<'" + dZakDo + "'))";
             }
+            query+=" ORDER BY data_rozpoczecia DESC";
             wyszukaneWydarzenia=stmt.executeQuery(query);
             insertWydarzenia();
         }
@@ -196,7 +228,7 @@ public class BasicWydarzenia {
                     "\tORDER BY data_rozpoczecia DESC;";
 
 
-            wyszukaneWydarzenia=stmt.executeQuery(query);;
+            wyszukaneWydarzenia=stmt.executeQuery(query);
         }
         catch (Exception e){
             showErrorWindow(e);
@@ -233,6 +265,77 @@ public class BasicWydarzenia {
     }
 
     @FXML
+    void edytujWydarzenie(ActionEvent event) {
+        try {
+            DodajWydarzenie.idWydarzenia=basicWydarzenia.getSelectionModel().getSelectedItem().id_wydarzenia.getValue().toString();
+            openSecondStage("FXML/dodajWydarzenie.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
+    void osobyUczestniczace(ActionEvent event) {
+        try {
+            try {
+                Statement stmt = connection.createStatement();
+
+                query="SELECT \n" +
+                        "id_osoby AS \"id_osoby\",\n" +
+                        "imie AS \"imie\",\n" +
+                        "nazwisko AS \"nazwisko\",\n" +
+                        "data_narodzin AS \"data_narodzin\",\n" +
+                        "data_zgonu AS \"data_zgonu\"\n" +
+                        "\tFROM parafianie" +
+                        " WHERE id_osoby IN(" +
+                        "SELECT id_osoby FROM uczestnicy_wydarzenia WHERE id_wydarzenia='" +
+                        basicWydarzenia.getSelectionModel().getSelectedItem().id_wydarzenia.getValue() +
+                        "')"+
+                        " ORDER BY id_osoby";
+
+                BasicParafianie.wyszukaniParafianie=stmt.executeQuery(query);
+                BasicParafianie.czyPrep=false;
+            }
+            catch (Exception e){
+                showErrorWindow(e);
+            }
+
+            replaceSceneContent("FXML/basicParafianie.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
+    void parafieOrganizujace(ActionEvent event) {
+        try {
+            Statement stmt = connection.createStatement();
+
+            query="SELECT \n" +
+                    "p.id_parafii AS \"id_parafii\",\n" +
+                    "p.nazwa AS \"nazwa\",\n" +
+                    "z.nazwa AS \"zakon\",\n" +
+                    "a.miasto AS \"miasto\",\n" +
+                    "a.ulica AS \"ulica\",\n" +
+                    "a.nr_domu AS \"nr_domu\"\n" +
+                    "\tFROM parafie p LEFT JOIN adresy a ON p.id_adresu=a.id_adresu\n" +
+                    "\tLEFT JOIN zakony z ON p.zakon=z.id_zakonu" +
+                    " WHERE id_parafii IN("+
+                    "SELECT id_parafii FROM parafie_wydarzenia WHERE id_wydarzenia='" +
+                    basicWydarzenia.getSelectionModel().getSelectedItem().id_wydarzenia.getValue() +
+                    "')"+
+                    "ORDER BY p.id_parafii";
+
+            BasicParafie.wyszukaneParafie=stmt.executeQuery(query);
+            BasicParafie.czyPrep=false;
+            replaceSceneContent("FXML/basicParafie.fxml");
+        }
+        catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
     void initialize() {
         assert mainMenu != null : "fx:id=\"mainMenu\" was not injected: check your FXML file 'basicWydarzenia.fxml'.";
         assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'basicWydarzenia.fxml'.";
@@ -251,7 +354,12 @@ public class BasicWydarzenia {
         assert wydarzenie != null : "fx:id=\"wydarzenie\" was not injected: check your FXML file 'basicWydarzenia.fxml'.";
         assert id_wydarzenia != null : "fx:id=\"id_wydarzenia\" was not injected: check your FXML file 'basicWydarzenia.fxml'.";
 
-        prepWydarzenia();
+        if(czyPrep){
+            prepWydarzenia();
+        }
+        else {
+            czyPrep=true;
+        }
         insertWydarzenia();
 
     }
