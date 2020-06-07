@@ -96,5 +96,6 @@
       </Text>
       <DatePicker fx:id="date" layoutX="136.0" layoutY="374.0" />
       <ComboBox fx:id="parafiaChoose" layoutX="136.0" layoutY="410.0" prefWidth="150.0" />
+      <Text layoutX="334.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kliknij prawym przyciskiem myszy na wiersz, by otworzyć menu" />
    </children>
 </AnchorPane>

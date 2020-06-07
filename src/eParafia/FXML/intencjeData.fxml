@@ -44,5 +44,6 @@
       </Text>
       <Button layoutX="586.0" layoutY="438.0" mnemonicParsing="false" onAction="#return_to_sakrament" prefHeight="69.0" prefWidth="282.0" text="Powróc do sakramentu" />
       <Button layoutX="108.0" layoutY="438.0" mnemonicParsing="false" onAction="#add_intencja" prefHeight="69.0" prefWidth="282.0" text="Dodaj intencję" />
+      <Text layoutX="332.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kliknij prawym przyciskiem myszy na wiersz, by otworzyć menu" />
    </children>
 </AnchorPane>

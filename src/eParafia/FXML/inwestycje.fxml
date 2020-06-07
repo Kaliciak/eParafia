@@ -97,5 +97,6 @@
       <DatePicker fx:id="dateTo" layoutX="255.0" layoutY="434.0" />
       <Button layoutX="92.0" layoutY="520.0" mnemonicParsing="false" onAction="#clear" prefHeight="57.0" prefWidth="248.0" text="Wyczyść pola" />
       <Button layoutX="610.0" layoutY="520.0" mnemonicParsing="false" onAction="#addedit" prefHeight="57.0" prefWidth="248.0" text="Dodaj/modyfikuj" />
+      <Text layoutX="334.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kliknij prawym przyciskiem myszy na wiersz, by otworzyć menu" />
    </children>
 </AnchorPane>

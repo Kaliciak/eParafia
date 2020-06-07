@@ -30,18 +30,18 @@
             </ContextMenu>
          </contextMenu>
       </TableView>
-      <Button layoutX="15.0" layoutY="259.0" mnemonicParsing="false" onAction="#addSakr" prefHeight="63.0" prefWidth="338.0" text="Dodaj sakrament" AnchorPane.leftAnchor="15.0" />
+      <Button layoutX="31.0" layoutY="282.0" mnemonicParsing="false" onAction="#addSakr" prefHeight="63.0" prefWidth="338.0" text="Dodaj sakrament" AnchorPane.leftAnchor="31.0" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text layoutX="440.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtry:" wrappingWidth="74.80340576171875" AnchorPane.rightAnchor="485.19659423828125" />
-      <ComboBox fx:id="sakrType" layoutX="747.0" layoutY="258.0" onAction="#update" prefWidth="150.0" AnchorPane.rightAnchor="103.0" />
-      <ComboBox fx:id="parafia" layoutX="747.0" layoutY="291.0" onAction="#update" prefHeight="25.0" prefWidth="150.0" AnchorPane.rightAnchor="103.0" />
-      <DatePicker fx:id="dateSince" layoutX="407.0" layoutY="362.0" onAction="#update" prefHeight="25.0" prefWidth="187.0" AnchorPane.rightAnchor="405.66666666666663" />
-      <DatePicker fx:id="dateTo" layoutX="720.0" layoutY="362.0" onAction="#update" prefHeight="25.0" prefWidth="177.0" AnchorPane.rightAnchor="102.66666666666663" />
-      <Text layoutX="650.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sakrament:" wrappingWidth="74.80340576171875" AnchorPane.rightAnchor="275.19659423828125" />
-      <Text layoutX="668.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parafia:" AnchorPane.rightAnchor="293.52734375" />
-      <Text layoutX="471.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Później niż:" AnchorPane.rightAnchor="469.931640625" />
-      <Text layoutX="772.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wcześniej niż:" AnchorPane.rightAnchor="154.564453125" />
-      <Button layoutX="15.0" layoutY="333.0" mnemonicParsing="false" onAction="#clear" prefHeight="63.0" prefWidth="338.0" text="Wyczyść filtry" AnchorPane.leftAnchor="15.0" />
+      <Text layoutX="456.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtry:" wrappingWidth="74.80340576171875" AnchorPane.rightAnchor="469.19659423828125" />
+      <ComboBox fx:id="sakrType" layoutX="763.0" layoutY="281.0" onAction="#update" prefWidth="150.0" AnchorPane.rightAnchor="87.0" />
+      <ComboBox fx:id="parafia" layoutX="763.0" layoutY="314.0" onAction="#update" prefHeight="25.0" prefWidth="150.0" AnchorPane.rightAnchor="87.0" />
+      <DatePicker fx:id="dateSince" layoutX="423.0" layoutY="385.0" onAction="#update" prefHeight="25.0" prefWidth="187.0" AnchorPane.rightAnchor="390.0" />
+      <DatePicker fx:id="dateTo" layoutX="736.0" layoutY="385.0" onAction="#update" prefHeight="25.0" prefWidth="177.0" AnchorPane.rightAnchor="87.0" />
+      <Text layoutX="666.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sakrament:" wrappingWidth="74.80340576171875" AnchorPane.rightAnchor="259.19659423828125" />
+      <Text layoutX="683.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parafia:" AnchorPane.rightAnchor="278.52734375" />
+      <Text layoutX="486.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Później niż:" AnchorPane.rightAnchor="454.931640625" />
+      <Text layoutX="787.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wcześniej niż:" AnchorPane.rightAnchor="139.564453125" />
+      <Button layoutX="31.0" layoutY="356.0" mnemonicParsing="false" onAction="#clear" prefHeight="63.0" prefWidth="338.0" text="Wyczyść filtry" AnchorPane.leftAnchor="31.0" />
       <MenuBar layoutX="2.0" layoutY="1.0" prefHeight="25.0" prefWidth="998.0" AnchorPane.rightAnchor="0.0">
          <menus>
             <Menu fx:id="mainMenu" mnemonicParsing="false" text="Opcje">
@@ -52,5 +52,6 @@
             </Menu>
          </menus>
       </MenuBar>
+      <Text layoutX="379.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kliknij na wiersz, by wyświetlić szczegóły" />
    </children>
 </AnchorPane>

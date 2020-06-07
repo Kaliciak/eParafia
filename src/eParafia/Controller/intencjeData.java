@@ -123,6 +123,7 @@ public class intencjeData {
 
     @FXML
     void delete_intencja(ActionEvent event) {
+        if(table.getSelectionModel().getSelectedItem()==null) return;
         String query = "delete from intencje_mszy where id_intencji="+table.getSelectionModel().getSelectedItem().getId_intencji();
         try {
             Statement st = connection.createStatement();
@@ -145,6 +146,7 @@ public class intencjeData {
 
     @FXML
     void show_intencja(ActionEvent event) {
+        if(table.getSelectionModel().getSelectedItem()==null) return;
         SingleIntencja userData = new SingleIntencja(table.getSelectionModel().getSelectedItem());
         userData.getDataFromUser();
         if(!userData.isDataProvided) return;

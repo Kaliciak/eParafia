@@ -76,5 +76,6 @@
             <TableColumn fx:id="rightBirthDateColumn" prefWidth="119.0" text="Data urodzenia" />
          </columns>
       </TableView>
+      <Text layoutX="349.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dwukrotnie kliknij na wiersz, by wybrać lub usunąć osobę" />
    </children>
 </AnchorPane>
