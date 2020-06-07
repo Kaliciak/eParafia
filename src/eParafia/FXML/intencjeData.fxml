@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eParafia.Controller.intencjeData">
+   <children>
+      <MenuBar layoutX="1.0" layoutY="2.0" prefHeight="25.0" prefWidth="998.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu fx:id="mainMenu" mnemonicParsing="false" text="Opcje">
+               <items>
+                  <MenuItem fx:id="mainMenu" mnemonicParsing="false" onAction="#goToMenu" text="Menu główne" />
+                  <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#wyloguj" text="Wyloguj" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <TableView fx:id="table" layoutX="14.0" layoutY="96.0" prefHeight="273.0" prefWidth="969.0">
+        <columns>
+          <TableColumn fx:id="intencjaColumn" prefWidth="819.0" text="Intencja" />
+          <TableColumn fx:id="zamawiajacyColumn" prefWidth="149.0" text="Zamawiający" />
+        </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#show_intencja" text="Wyświetl intencję" />
+                <MenuItem mnemonicParsing="false" onAction="#delete_intencja" text="Usuń intencję" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+      <Text fx:id="sakramentText" layoutX="26.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Intencje sakramentu:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="586.0" layoutY="438.0" mnemonicParsing="false" onAction="#return_to_sakrament" prefHeight="69.0" prefWidth="282.0" text="Powróc do sakramentu" />
+      <Button layoutX="108.0" layoutY="438.0" mnemonicParsing="false" onAction="#add_intencja" prefHeight="69.0" prefWidth="282.0" text="Dodaj intencję" />
+   </children>
+</AnchorPane>
