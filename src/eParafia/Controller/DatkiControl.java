@@ -174,7 +174,7 @@ public class DatkiControl {
             }
         }
     }
-    public String padLeftZeros(String inputString, int length) {
+    static public String padLeftZeros(String inputString, int length) {
         if (inputString.length() >= length) {
             return inputString;
         }

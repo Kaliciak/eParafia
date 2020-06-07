@@ -83,6 +83,15 @@ public class MainMenu {
             showErrorWindow(e);
         }
     }
+
+    @FXML
+    void goToInwestycje(ActionEvent event) {
+        try {
+            replaceSceneContent("FXML/inwestycje.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
     //MENU
 
     @FXML
