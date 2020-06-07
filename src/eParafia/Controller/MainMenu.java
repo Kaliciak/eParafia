@@ -64,6 +64,16 @@ public class MainMenu {
             showErrorWindow(e);
         }
     }
+
+    @FXML
+    void goToDatki(ActionEvent event) {
+        try {
+            replaceSceneContent("FXML/datki.fxml");
+        }catch (Exception e){
+            e.printStackTrace();
+            showErrorWindow(e);
+        }
+    }
     //MENU
 
     @FXML
