@@ -78,8 +78,7 @@ public class BasicParafie {
     void prepParafie(){
         try {
 
-            query=
-                    "SELECT \n" +
+            query= "SELECT \n" +
                             "p.id_parafii AS \"id_parafii\",\n" +
                             "p.nazwa AS \"nazwa\",\n" +
                             "z.nazwa AS \"zakon\",\n" +
@@ -428,6 +427,29 @@ public class BasicParafie {
             showErrorWindow(e);
         }
     }
+
+    @FXML
+    void showWydarzenia(ActionEvent event) {
+        try {
+            String idPar=basicParafie.getSelectionModel().getSelectedItem().id_parafii.getValue().toString();
+            Statement stmt = connection.createStatement();
+
+            query="SELECT *\n" +
+                    "\tFROM WYDARZENIA\n" +
+                    " WHERE id_wydarzenia IN("+
+                    "SELECT id_wydarzenia FROM parafie_wydarzenia WHERE id_parafii='" +
+                    idPar+
+                    "')"+
+                    "ORDER BY data_rozpoczecia DESC";
+
+            BasicWydarzenia.wyszukaneWydarzenia=stmt.executeQuery(query);
+            BasicWydarzenia.czyPrep=false;
+            replaceSceneContent("FXML/basicWydarzenia.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
 
     @FXML
     void initialize() {
