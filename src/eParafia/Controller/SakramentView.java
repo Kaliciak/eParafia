@@ -230,6 +230,16 @@ public class SakramentView {
             }
         }
     }
+
+    @FXML
+    void intencje(ActionEvent event) {
+        try {
+            replaceSceneContent("FXML/intencjeData.fxml");
+        }catch (Exception e){
+            e.printStackTrace();
+            showErrorWindow(e);
+        }
+    }
     @FXML
     void returnToSakramenty(ActionEvent event) {
         try{

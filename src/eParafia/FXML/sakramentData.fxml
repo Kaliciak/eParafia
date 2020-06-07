@@ -51,7 +51,7 @@
          </font>
       </Text>
       <Button layoutX="14.0" layoutY="454.0" mnemonicParsing="false" onAction="#add" prefHeight="58.0" prefWidth="298.0" text="Dodaj uczestnika" />
-      <Button layoutX="824.0" layoutY="88.0" mnemonicParsing="false" onAction="#edit" prefHeight="58.0" prefWidth="161.0" text="Edytuj dane" />
+      <Button layoutX="824.0" layoutY="36.0" mnemonicParsing="false" onAction="#edit" prefHeight="58.0" prefWidth="161.0" text="Edytuj dane" />
       <Button layoutX="626.0" layoutY="454.0" mnemonicParsing="false" onAction="#returnToSakramenty" prefHeight="58.0" prefWidth="298.0" text="Wróć do wszystkich sakramentów" />
       <Text layoutX="522.0" layoutY="59.0" onDragDetected="#add" strokeType="OUTSIDE" strokeWidth="0.0" text="Dane szafarza:" wrappingWidth="191.4133682250977">
          <font>
@@ -72,5 +72,6 @@
       <Button layoutX="320.0" layoutY="523.0" mnemonicParsing="false" onAction="#add_gosc" prefHeight="58.0" prefWidth="298.0" text="Dodaj gościa" />
       <Button layoutX="626.0" layoutY="523.0" mnemonicParsing="false" onAction="#delete" prefHeight="58.0" prefWidth="298.0" text="Usuń sakrament" />
       <Button layoutX="320.0" layoutY="454.0" mnemonicParsing="false" onAction="#delete_part" prefHeight="58.0" prefWidth="298.0" text="Usuń uczestników" />
+      <Button layoutX="824.0" layoutY="104.0" mnemonicParsing="false" onAction="#intencje" prefHeight="58.0" prefWidth="161.0" text="Wyświetl intencje mszy" />
    </children>
 </AnchorPane>
