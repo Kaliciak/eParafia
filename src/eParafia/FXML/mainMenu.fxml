@@ -24,41 +24,41 @@
                </items></Menu>
         </menus>
       </MenuBar>
-      <Button layoutX="112.0" layoutY="132.0" mnemonicParsing="false" onAction="#goToParafie" prefHeight="69.0" prefWidth="223.0" text="Parafie" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="700.0">
+      <Button layoutX="112.0" layoutY="132.0" mnemonicParsing="false" onAction="#goToParafie" prefHeight="69.0" prefWidth="223.0" text="Parafie" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="130.0">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="89.0" layoutY="251.0" mnemonicParsing="false" onAction="#goToParafianie" prefHeight="70.0" prefWidth="218.0" text="Parafianie" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="700.0">
+      <Button layoutX="412.0" layoutY="131.0" mnemonicParsing="false" onAction="#goToParafianie" prefHeight="70.0" prefWidth="223.0" text="Parafianie" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="130.0">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="100.0" layoutY="366.0" mnemonicParsing="false" onAction="#goToSakramenty" prefHeight="70.0" prefWidth="200.0" text="Sakramenty">
+      <Button layoutX="701.0" layoutY="282.0" mnemonicParsing="false" onAction="#goToSakramenty" prefHeight="70.0" prefWidth="223.0" text="Sakramenty" AnchorPane.leftAnchor="700.0" AnchorPane.topAnchor="280.0">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button layoutX="370.0" layoutY="131.0" mnemonicParsing="false" onAction="#goToPracownicy" prefHeight="70.0" prefWidth="200.0" text="Pracownicy" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="430.0">
+      <Button layoutX="699.0" layoutY="133.0" mnemonicParsing="false" onAction="#goToPracownicy" prefHeight="70.0" prefWidth="223.0" text="Pracownicy" AnchorPane.leftAnchor="700.0" AnchorPane.topAnchor="130.0">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="370.0" layoutY="251.0" mnemonicParsing="false" onAction="#goToWydarzenia" prefHeight="70.0" prefWidth="200.0" text="Wydarzenia">
+      <Button layoutX="406.0" layoutY="274.0" mnemonicParsing="false" onAction="#goToWydarzenia" prefHeight="70.0" prefWidth="223.0" text="Wydarzenia" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="280.0">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="370.0" layoutY="366.0" mnemonicParsing="false" onAction="#goToPielgrzymki" prefHeight="70.0" prefWidth="200.0" text="Pielgrzymki">
+      <Button layoutX="398.0" layoutY="417.0" mnemonicParsing="false" onAction="#goToPielgrzymki" prefHeight="70.0" prefWidth="223.0" text="Pielgrzymki" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="420.0">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="370.0" layoutY="366.0" mnemonicParsing="false" onAction="#goToDatki" prefHeight="70.0" prefWidth="200.0" text="Datki">
+      <Button layoutX="94.0" layoutY="422.0" mnemonicParsing="false" onAction="#goToDatki" prefHeight="70.0" prefWidth="223.0" text="Datki" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="420.0">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="100.0" layoutY="480.0" mnemonicParsing="false" onAction="#goToInwestycje" prefHeight="70.0" prefWidth="200.0" text="Inwestycje">
+      <Button layoutX="107.0" layoutY="277.0" mnemonicParsing="false" onAction="#goToInwestycje" prefHeight="70.0" prefWidth="223.0" text="Inwestycje" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="280.0">
          <font>
             <Font size="18.0" />
          </font>
