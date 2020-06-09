@@ -66,9 +66,28 @@ public class MainMenu {
     }
 
     @FXML
+    void goToDatki(ActionEvent event) {
+        try {
+            replaceSceneContent("FXML/datki.fxml");
+        }catch (Exception e){
+            e.printStackTrace();
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
     void goToPielgrzymki(ActionEvent event) {
         try {
             replaceSceneContent("FXML/basicPielgrzymki.fxml");
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
+
+    @FXML
+    void goToInwestycje(ActionEvent event) {
+        try {
+            replaceSceneContent("FXML/inwestycje.fxml");
         }catch (Exception e){
             showErrorWindow(e);
         }
