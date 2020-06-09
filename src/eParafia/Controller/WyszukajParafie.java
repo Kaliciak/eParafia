@@ -170,13 +170,7 @@ public class WyszukajParafie {
 
     @FXML
     void wyloguj(ActionEvent event) {
-        System.out.println("WYLOGUJ");
-        try {
-            connection.close();
-            replaceSceneContent("FXML/login.fxml");
-        }catch (Exception e){
-            showErrorWindow(e);
-        }
+        logout();
     }
     ////
 }

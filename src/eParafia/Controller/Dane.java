@@ -50,4 +50,13 @@ public class Dane {
         alert.setResizable(true);
         alert.showAndWait();
     }
+    public static void logout(){
+        try {
+            connection.close();
+            replaceSceneContent("FXML/login.fxml");
+            secondStage.close();
+        }catch (Exception e){
+            showErrorWindow(e);
+        }
+    }
 }
